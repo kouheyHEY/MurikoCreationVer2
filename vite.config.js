@@ -1,13 +1,18 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import path from 'path' // ← 追加
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [vue()],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src') // ← ここで @ を src に対応
+    }
+  },
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: `@import "./src/assets/styles/custom.scss";`
+        additionalData: `@import "@/assets/styles/custom.scss";` // ← 修正されたインポート
       }
     }
   }

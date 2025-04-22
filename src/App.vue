@@ -18,10 +18,29 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 body {
-  background-color: #DCDBFF;
-  color: #1E0033;
+  background-color: $body-bg;
+  color: $body-color;
   font-family: 'Segoe UI', sans-serif;
+}
+
+.navbar {
+  background-color: $primary;
+
+  .nav-link {
+    color: white;
+
+    &:hover {
+      color: $success;
+    }
+  }
+}
+
+footer {
+  background-color: $dark;
+  color: white;
+  padding: 1rem;
+  text-align: center;
 }
 </style>
