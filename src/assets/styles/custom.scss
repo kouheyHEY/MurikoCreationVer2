@@ -1,0 +1,19 @@
+/* 使用例 */
+/*
+ナビバー背景        #1E0033（ダークパープル）
+ナビリンク          #DCDBFF or #00CCAA
+メインボタン        #7700CC
+ホバー時の色        #7A63FF or #00CCAA
+サブセクション背景  #FFFFFF or rgba(255, 255, 255, 0.6)
+カードの縁や枠      #7A63FF の薄め
+*/
+
+$primary: #7700CC;
+$secondary: #7A63FF;
+$success: #00CCAA;
+$light: #DCDBFF;
+$dark: #1E0033;
+$body-bg: #DCDBFF;
+$body-color: #1E0033;
+
+@import "bootstrap/scss/bootstrap";
