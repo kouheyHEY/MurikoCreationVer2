@@ -18,20 +18,19 @@
     </div>
   </template>
   
-  <script setup>
-  const portfolio = [
-    {
-      title: '作品1',
-      description: '作品1の説明です。',
-      image: 'https://via.placeholder.com/300x200',
-      link: '#'
-    },
-    {
-      title: '作品2',
-      description: '作品2の説明です。',
-      image: 'https://via.placeholder.com/300x200',
-      link: '#'
-    }
-  ];
-  </script>
-  
+<script setup>
+const portfolio = [
+  {
+    title: '作品1',
+    description: '作品1の説明です。',
+    image: 'https://via.placeholder.com/300x200',
+    link: '#'
+  },
+  {
+    title: '作品2',
+    description: '作品2の説明です。',
+    image: 'https://via.placeholder.com/300x200',
+    link: '#'
+  }
+];
+</script>

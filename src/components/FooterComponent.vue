@@ -39,7 +39,7 @@
   }
   
   .footer-link {
-    color: #00CCAA;
+    color: #0CA;
     text-decoration: none;
   }
   

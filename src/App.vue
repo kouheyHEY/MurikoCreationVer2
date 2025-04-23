@@ -1,14 +1,16 @@
 <template>
-  <div>
+  <div class="app-container">
     <HeaderComponent />
-    <router-view />
+    <main class="main-content">
+      <router-view />
+    </main>
     <FooterComponent />
   </div>
 </template>
 
 <script>
-import HeaderComponent from './components/HeaderComponent.vue';
 import FooterComponent from './components/FooterComponent.vue';
+import HeaderComponent from './components/HeaderComponent.vue';
 
 export default {
   components: {
@@ -19,10 +21,31 @@ export default {
 </script>
 
 <style lang="scss">
+/* リセット */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   background-color: $body-bg;
   color: $body-color;
   font-family: 'Segoe UI', sans-serif;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1; /* フッターを画面下部に固定するためにメインコンテンツを伸縮可能に */
+  width: 80%;
+  max-width: 960px; /* 最大幅を設定 */
+  margin: 0 auto; /* 中央揃え */
+  padding: 1rem; /* 余白を追加 */
 }
 
 .navbar {
@@ -42,5 +65,13 @@ footer {
   color: white;
   padding: 1rem;
   text-align: center;
+}
+
+.title {
+  font-family: $font-title;
+}
+
+p, .text {
+  font-family: $font-body;
 }
 </style>
