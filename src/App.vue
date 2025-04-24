@@ -15,8 +15,8 @@ import HeaderComponent from './components/HeaderComponent.vue';
 export default {
   components: {
     HeaderComponent,
-    FooterComponent
-  }
+    FooterComponent,
+  },
 };
 </script>
 
@@ -71,7 +71,8 @@ footer {
   font-family: $font-title;
 }
 
-p, .text {
+p,
+.text {
   font-family: $font-body;
 }
 </style>

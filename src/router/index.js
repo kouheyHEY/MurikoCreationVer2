@@ -1,13 +1,13 @@
 // src/router/index.js
 import { createRouter, createWebHistory } from 'vue-router';
-import HomeView from '../views/HomeView.vue';
-import PortfolioView from '../views/portfolio/PortfolioView.vue';
-import BlogView from '../views/BlogView.vue';
 import AboutView from '../views/AboutView.vue';
-import GameDevView from '../views/portfolio/GameDevView.vue';
-import WebDevView from '../views/portfolio/WebDevView.vue';
-import OtherDevView from '../views/portfolio/OtherDevView.vue';
+import BlogView from '../views/BlogView.vue';
 import ContactView from '../views/ContactView.vue';
+import HomeView from '../views/HomeView.vue';
+import GameDevView from '../views/portfolio/GameDevView.vue';
+import OtherDevView from '../views/portfolio/OtherDevView.vue';
+import PortfolioView from '../views/portfolio/PortfolioView.vue';
+import WebDevView from '../views/portfolio/WebDevView.vue';
 
 const routes = [
   { path: '/', name: 'Home', component: HomeView },
@@ -22,7 +22,7 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory(),
-  routes
+  routes,
 });
 
 export default router;

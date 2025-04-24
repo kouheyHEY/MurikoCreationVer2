@@ -8,37 +8,37 @@
 サブセクション背景  #FFFFFF or rgba(255, 255, 255, 0.6)
 カードの縁や枠      #7A63FF の薄め
 */
-$primary: #70C;
-$secondary: #7A63FF;
-$success: #0CA;
-$light: #DCDBFF;
-$dark: #1E0033;
-$body-bg: #DCDBFF;
-$body-color: #1E0033;
+$primary: #70c;
+$secondary: #7a63ff;
+$success: #0ca;
+$light: #dcdbff;
+$dark: #1e0033;
+$body-bg: #dcdbff;
+$body-color: #1e0033;
 $pixel-font-bold: 'PixelMPlus12Bold', sans-serif;
 $pixel-font-regular: 'PixelMPlus12Regular', sans-serif;
 $font-title: 'DonguriDuel', sans-serif;
 $font-body: 'M PLUS 1p', sans-serif;
 
 @font-face {
-    font-family: DonguriDuel;
-    src: url('@/assets/fonts/DonguriDuel.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+  font-family: DonguriDuel;
+  src: url('@/assets/fonts/DonguriDuel.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'PixelMPlus12Bold';
-    src: url('@/assets/fonts/PixelMplus12-Bold.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'PixelMPlus12Bold';
+  src: url('@/assets/fonts/PixelMplus12-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'PixelMPlus12Regular';
-    src: url('@/assets/fonts/PixelMplus12-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'PixelMPlus12Regular';
+  src: url('@/assets/fonts/PixelMplus12-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
 // 全体に使う場合の基本設定
@@ -74,7 +74,9 @@ body {
   border: 3px solid $border-color;
   text-decoration: none;
   font-size: 0.75rem;
-  transition: background-color 0.3s, color 0.3s;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
 
   &:hover {
     background-color: lighten($bg-color, 10%);
@@ -82,4 +84,4 @@ body {
   }
 }
 
-@import "bootstrap/scss/bootstrap";
+@import 'bootstrap/scss/bootstrap';
