@@ -23,59 +23,54 @@
 
       <!-- ゲームのポートフォリオ -->
       <div class="portfolio-category">
-        <h3 class="category-title">ゲームのポートフォリオ</h3>
+        <h3 class="category-title">ゲーム</h3>
         <div class="portfolio-grid" ref="gamePortfolio">
-          <div class="portfolio-item">
-            <img
-              src="../assets/images/thumbneil_default_1200x1200.png"
-              alt="ゲーム作品1"
-              class="portfolio-thumbnail"
-            />
-            <p class="portfolio-title">ゲーム作品1</p>
-            <p class="portfolio-date">2025年4月1日</p>
-          </div>
-          <div class="portfolio-item">
-            <img
-              src="../assets/images/thumbneil_default_1200x1200.png"
-              alt="ゲーム作品2"
-              class="portfolio-thumbnail"
-            />
-            <p class="portfolio-title">ゲーム作品2</p>
-            <p class="portfolio-date">2025年4月2日</p>
-          </div>
-          <div class="portfolio-item">
-            <img
-              src="../assets/images/thumbneil_default_1200x1200.png"
-              alt="ゲーム作品3"
-              class="portfolio-thumbnail"
-            />
-            <p class="portfolio-title">ゲーム作品3</p>
-            <p class="portfolio-date">2025年4月3日</p>
+          <div
+            class="portfolio-item"
+            v-for="item in gamePortfolio"
+            :key="item.id"
+          >
+            <router-link
+              :to="{
+                name: 'Portfolio',
+                params: { category: 'game', id: item.id },
+              }"
+            >
+              <img
+                :src="item.thumbnail"
+                :alt="item.title"
+                class="portfolio-thumbnail"
+              />
+              <p class="portfolio-title">{{ item.title }}</p>
+              <p class="portfolio-date">{{ item.date }}</p>
+            </router-link>
           </div>
         </div>
       </div>
 
       <!-- Web開発のポートフォリオ -->
       <div class="portfolio-category">
-        <h3 class="category-title">Web開発のポートフォリオ</h3>
+        <h3 class="category-title">Web開発</h3>
         <div class="portfolio-grid" ref="webPortfolio">
-          <div class="portfolio-item">
-            <img
-              src="../assets/images/thumbneil_default_1200x1200.png"
-              alt="Web作品1"
-              class="portfolio-thumbnail"
-            />
-            <p class="portfolio-title">Web作品1</p>
-            <p class="portfolio-date">2025年4月4日</p>
-          </div>
-          <div class="portfolio-item">
-            <img
-              src="../assets/images/thumbneil_default_1200x1200.png"
-              alt="Web作品2"
-              class="portfolio-thumbnail"
-            />
-            <p class="portfolio-title">Web作品2</p>
-            <p class="portfolio-date">2025年4月5日</p>
+          <div
+            class="portfolio-item"
+            v-for="item in webPortfolio"
+            :key="item.id"
+          >
+            <router-link
+              :to="{
+                name: 'Portfolio',
+                params: { category: 'web', id: item.id },
+              }"
+            >
+              <img
+                :src="item.thumbnail"
+                :alt="item.title"
+                class="portfolio-thumbnail"
+              />
+              <p class="portfolio-title">{{ item.title }}</p>
+              <p class="portfolio-date">{{ item.date }}</p>
+            </router-link>
           </div>
         </div>
       </div>
@@ -85,6 +80,44 @@
 
 <script>
 export default {
+  data() {
+    return {
+      gamePortfolio: [
+        {
+          id: 1,
+          title: 'ゲーム作品1',
+          date: '2025年4月1日',
+          thumbnail: '/src/assets/images/thumbneil_default_1200x1200.png',
+        },
+        {
+          id: 2,
+          title: 'ゲーム作品2',
+          date: '2025年4月2日',
+          thumbnail: '/src/assets/images/thumbneil_default_1200x1200.png',
+        },
+        {
+          id: 3,
+          title: 'ゲーム作品3',
+          date: '2025年4月3日',
+          thumbnail: '/src/assets/images/thumbneil_default_1200x1200.png',
+        },
+      ],
+      webPortfolio: [
+        {
+          id: 1,
+          title: 'Web作品1',
+          date: '2025年4月4日',
+          thumbnail: '/src/assets/images/thumbneil_default_1200x1200.png',
+        },
+        {
+          id: 2,
+          title: 'Web作品2',
+          date: '2025年4月5日',
+          thumbnail: '/src/assets/images/thumbneil_default_1200x1200.png',
+        },
+      ],
+    };
+  },
   mounted() {
     // 各ポートフォリオカテゴリにドラッグ操作を追加
     this.enableDragScroll(this.$refs.gamePortfolio);
@@ -217,8 +250,8 @@ export default {
           min-width: 200px; /* 各アイテムの最小幅 */
 
           .portfolio-thumbnail {
-            width: 200px; /* 横幅を200pxに設定 */
-            height: 150px; /* 縦幅を150pxに設定 */
+            width: 320px;
+            height: 240px;
             margin-bottom: 0.5rem;
             object-fit: cover; /* サムネイルの比率を維持 */
           }
