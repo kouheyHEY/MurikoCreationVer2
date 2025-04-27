@@ -42,7 +42,7 @@ body {
 
 .main-content {
   flex: 1; /* フッターを画面下部に固定するためにメインコンテンツを伸縮可能に */
-  width: 80%;
+  width: 70%;
   min-width: 320px; /* 最小幅を設定 */
   max-width: 960px; /* 最大幅を設定 */
   margin: 0 auto; /* 中央揃え */

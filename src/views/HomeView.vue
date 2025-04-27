@@ -1,9 +1,8 @@
 <template>
-  <div class="home-view text-center py-5">
+  <div class="home-view text-center pt-2 pb-5">
     <h1 class="title mb-4">むりこクリエイション</h1>
     <p class="subtitle mb-5">レトロゲームと創造の世界へようこそ。</p>
 
-    <!-- ボタンをグリッドで配置 -->
     <div class="link-buttons mx-2">
       <router-link class="link-button" to="/portfolio"
         >▶ ポートフォリオを見る</router-link
@@ -17,23 +16,27 @@
       <router-link class="link-button" to="/blog">▶ ブログ</router-link>
     </div>
 
-    <!-- ポートフォリオセクション -->
     <section class="portfolio-section mt-5">
       <h2 class="portfolio-title">ポートフォリオ</h2>
-
-      <!-- ゲームのポートフォリオ -->
-      <div class="portfolio-category">
-        <h3 class="category-title">ゲーム</h3>
-        <div class="portfolio-grid" ref="gamePortfolio">
+      <div
+        v-for="portfolio in portfolios"
+        :key="portfolio.category"
+        class="portfolio-category"
+      >
+        <h3 class="category-title">{{ portfolio.category }}</h3>
+        <div class="portfolio-grid" :ref="portfolio.refName">
           <div
             class="portfolio-item"
-            v-for="item in gamePortfolio"
+            v-for="item in portfolio.items"
             :key="item.id"
           >
             <router-link
               :to="{
                 name: 'PortfolioDetail',
-                params: { category: 'game', id: item.id },
+                params: {
+                  category: portfolio.category.toLowerCase(),
+                  id: item.id,
+                },
               }"
             >
               <div>
@@ -49,35 +52,6 @@
           </div>
         </div>
       </div>
-
-      <!-- Web開発のポートフォリオ -->
-      <div class="portfolio-category">
-        <h3 class="category-title">Web開発</h3>
-        <div class="portfolio-grid" ref="webPortfolio">
-          <div
-            class="portfolio-item"
-            v-for="item in webPortfolio"
-            :key="item.id"
-          >
-            <router-link
-              :to="{
-                name: 'PortfolioDetail',
-                params: { category: 'web', id: item.id },
-              }"
-            >
-              <div>
-                <img
-                  :src="item.thumbnail"
-                  :alt="item.title"
-                  class="portfolio-thumbnail"
-                />
-                <p class="portfolio-title">{{ item.title }}</p>
-                <p class="portfolio-date">{{ item.date }}</p>
-              </div>
-            </router-link>
-          </div>
-        </div>
-      </div>
     </section>
   </div>
 </template>
@@ -86,92 +60,169 @@
 export default {
   data() {
     return {
-      gamePortfolio: [
+      portfolios: [
         {
-          id: 1,
-          title: 'ゲーム作品1',
-          date: '2025年4月1日',
-          thumbnail: '/src/assets/images/thumbneil_default_1200x1200.png',
+          category: 'game',
+          refName: 'gamePortfolio',
+          items: [
+            {
+              id: 1,
+              title: 'ゲーム作品1',
+              date: '2025年4月1日',
+              thumbnail: '/src/assets/images/thumbneil_default_1200x1200.png',
+            },
+            {
+              id: 2,
+              title: 'ゲーム作品2',
+              date: '2025年4月2日',
+              thumbnail: '/src/assets/images/thumbneil_default_1200x1200.png',
+            },
+            {
+              id: 3,
+              title: 'ゲーム作品3',
+              date: '2025年4月3日',
+              thumbnail: '/src/assets/images/thumbneil_default_1200x1200.png',
+            },
+            {
+              id: 4,
+              title: 'ゲーム作品4',
+              date: '2025年4月4日',
+              thumbnail: '/src/assets/images/thumbneil_default_1200x1200.png',
+            },
+          ],
         },
         {
-          id: 2,
-          title: 'ゲーム作品2',
-          date: '2025年4月2日',
-          thumbnail: '/src/assets/images/thumbneil_default_1200x1200.png',
-        },
-        {
-          id: 3,
-          title: 'ゲーム作品3',
-          date: '2025年4月3日',
-          thumbnail: '/src/assets/images/thumbneil_default_1200x1200.png',
-        },
-      ],
-      webPortfolio: [
-        {
-          id: 1,
-          title: 'Web作品1',
-          date: '2025年4月4日',
-          thumbnail: '/src/assets/images/thumbneil_default_1200x1200.png',
-        },
-        {
-          id: 2,
-          title: 'Web作品2',
-          date: '2025年4月5日',
-          thumbnail: '/src/assets/images/thumbneil_default_1200x1200.png',
+          category: 'web',
+          refName: 'webPortfolio',
+          items: [
+            {
+              id: 1,
+              title: 'Web作品1',
+              date: '2025年4月4日',
+              thumbnail: '/src/assets/images/thumbneil_default_1200x1200.png',
+            },
+            {
+              id: 2,
+              title: 'Web作品2',
+              date: '2025年4月5日',
+              thumbnail: '/src/assets/images/thumbneil_default_1200x1200.png',
+            },
+          ],
         },
       ],
     };
   },
   mounted() {
-    // 各ポートフォリオカテゴリにドラッグ操作を追加
-    this.enableDragScroll(this.$refs.gamePortfolio);
-    this.enableDragScroll(this.$refs.webPortfolio);
+    this.portfolios.forEach((portfolio) => {
+      const elements = this.$refs[portfolio.refName];
+      if (elements) {
+        const setupElement = (element) => {
+          this.enableDragScroll(element);
+          this.setupDynamicEffect(element);
+          // ここを変更！！
+          this.scrollToFirstItem(element);
+        };
+        if (Array.isArray(elements)) {
+          elements.forEach(setupElement);
+        } else {
+          setupElement(elements);
+        }
+      }
+    });
   },
   methods: {
     enableDragScroll(element) {
       let isDown = false;
       let startX;
       let scrollLeft;
+      let isDragging = false;
 
       element.addEventListener('mousedown', (e) => {
         isDown = true;
-        element.classList.add('active');
+        isDragging = false;
         startX = e.pageX - element.offsetLeft;
         scrollLeft = element.scrollLeft;
       });
 
       element.addEventListener('mouseleave', () => {
+        if (isDown) {
+          this.snapToNearestItem(element);
+        }
         isDown = false;
-        element.classList.remove('active');
-        this.snapToCenter(element); // 要素を中央に寄せる
       });
 
       element.addEventListener('mouseup', () => {
+        if (isDown) {
+          this.snapToNearestItem(element);
+        }
         isDown = false;
-        element.classList.remove('active');
-        this.snapToCenter(element); // 要素を中央に寄せる
       });
 
       element.addEventListener('mousemove', (e) => {
         if (!isDown) return;
         e.preventDefault();
+        isDragging = true;
         const x = e.pageX - element.offsetLeft;
-        const walk = (x - startX) * 1.5; // スクロール速度を調整
+        const walk = (x - startX) * 1.5;
+        element.scrollLeft = scrollLeft - walk;
+      });
+
+      // スマホ対応
+      element.addEventListener('touchstart', (e) => {
+        isDown = true;
+        isDragging = false;
+        startX = e.touches[0].pageX - element.offsetLeft;
+        scrollLeft = element.scrollLeft;
+      });
+
+      element.addEventListener('touchend', () => {
+        if (isDown) {
+          this.snapToNearestItem(element);
+        }
+        isDown = false;
+      });
+
+      element.addEventListener('touchmove', (e) => {
+        if (!isDown) return;
+        isDragging = true;
+        const x = e.touches[0].pageX - element.offsetLeft;
+        const walk = (x - startX) * 1.5;
         element.scrollLeft = scrollLeft - walk;
       });
     },
-    snapToCenter(element) {
+    setupDynamicEffect(element) {
+      element.addEventListener('scroll', () => {
+        const items = element.querySelectorAll('.portfolio-item');
+        const center = element.offsetWidth / 2;
+        const scrollLeft = element.scrollLeft;
+
+        items.forEach((item) => {
+          const itemCenter =
+            item.offsetLeft - scrollLeft + item.offsetWidth / 2;
+          const distance = Math.abs(center - itemCenter);
+
+          const maxDistance = center;
+          const scale = Math.max(0.8, 1 - (distance / maxDistance) * 0.2);
+          const opacity = Math.max(0.4, 1 - (distance / maxDistance) * 0.6);
+
+          item.style.transform = `scale(${scale})`;
+          item.style.opacity = opacity;
+        });
+      });
+
+      // ページロード直後にも実行
+      element.dispatchEvent(new Event('scroll'));
+    },
+    snapToNearestItem(element) {
       const items = element.querySelectorAll('.portfolio-item');
-      const elementWidth = element.offsetWidth;
-      const scrollLeft = element.scrollLeft;
+      const centerX = element.scrollLeft + element.offsetWidth / 2;
 
       let closestItem = null;
       let closestDistance = Infinity;
 
       items.forEach((item) => {
-        const itemLeft = item.offsetLeft - scrollLeft;
-        const itemCenter = itemLeft + item.offsetWidth / 2;
-        const distance = Math.abs(itemCenter - elementWidth / 2);
+        const itemCenterX = item.offsetLeft + item.offsetWidth / 2;
+        const distance = Math.abs(itemCenterX - centerX);
 
         if (distance < closestDistance) {
           closestDistance = distance;
@@ -181,13 +232,31 @@ export default {
 
       if (closestItem) {
         const targetScroll =
-          closestItem.offsetLeft -
-          elementWidth / 2 +
-          closestItem.offsetWidth / 2;
+          closestItem.offsetLeft +
+          closestItem.offsetWidth / 2 -
+          element.offsetWidth / 2;
+
         element.scrollTo({
           left: targetScroll,
-          behavior: 'smooth', // スムーズなスクロール
+          behavior: 'smooth',
         });
+      }
+    },
+    scrollToFirstItem(element) {
+      const firstItem = element.querySelector('.portfolio-item');
+      if (firstItem) {
+        const targetScroll =
+          firstItem.offsetLeft +
+          firstItem.offsetWidth / 2 -
+          element.clientWidth / 2; // ← widthじゃなくてclientWidthにするのもポイント
+
+        element.scrollTo({
+          left: targetScroll,
+          behavior: 'auto', // 最初だけ一瞬で動かす
+        });
+
+        // 明示的にリサイズも一度発火させると完璧
+        this.snapToNearestItem(element);
       }
     },
   },
@@ -251,11 +320,13 @@ export default {
           background-color: $light;
           border: 1px solid $dark;
           text-align: center;
-          min-width: 200px; /* 各アイテムの最小幅 */
+          width: 70%;
+          min-width: 100px; /* 各アイテムの最小幅 */
+          max-width: 320px;
 
           .portfolio-thumbnail {
-            width: 320px;
-            height: 240px;
+            width: 100%;
+            aspect-ratio: 4 / 3;
             margin-bottom: 0.5rem;
             object-fit: cover; /* サムネイルの比率を維持 */
           }
