@@ -25,6 +25,8 @@
       >
         <h3 class="category-title">{{ portfolio.category }}</h3>
         <div class="portfolio-grid" :ref="portfolio.refName">
+          <!-- 左に空白 -->
+          <div class="portfolio-spacer"></div>
           <div
             class="portfolio-item"
             v-for="item in portfolio.items"
@@ -50,6 +52,9 @@
               </div>
             </router-link>
           </div>
+
+          <!-- 右に空白 -->
+          <div class="portfolio-spacer"></div>
         </div>
       </div>
     </section>
@@ -136,6 +141,38 @@ export default {
       let startX;
       let scrollLeft;
       let isDragging = false;
+      let lastScrollLeft = 0;
+      let lastTimestamp = 0;
+      let checkInterval = null;
+
+      const startCheckingScrollStop = () => {
+        console.log('START CHECKING');
+
+        if (checkInterval) clearInterval(checkInterval);
+
+        lastTimestamp = Date.now(); // 最初のタイムスタンプを更新
+        lastScrollLeft = element.scrollLeft; // 最初のスクロール位置を記録
+
+        checkInterval = setInterval(() => {
+          const now = Date.now();
+          const elapsed = now - lastTimestamp; // 経過時間を計算
+
+          const currentScrollLeft = element.scrollLeft;
+          const speed = Math.abs(currentScrollLeft - lastScrollLeft); // スクロールの移動量
+
+          lastScrollLeft = currentScrollLeft; // 最後のスクロール位置を更新
+
+          // スクロールが静止しているか、一定時間経過した場合に停止と判断
+          if (elapsed > 100 && speed < 1) {
+            clearInterval(checkInterval); // インターバルをクリア
+            this.snapToClosestItem(element); // アイテムにスナップ
+            console.log('END CHECKING');
+          }
+          console.log('ELAPSED CHECKING : ' + elapsed);
+          console.log('SPEED CHECKING : ' + speed);
+          console.log('END CHECKING');
+        }, 50);
+      };
 
       element.addEventListener('mousedown', (e) => {
         isDown = true;
@@ -146,14 +183,14 @@ export default {
 
       element.addEventListener('mouseleave', () => {
         if (isDown) {
-          this.snapToNearestItem(element);
+          startCheckingScrollStop();
         }
         isDown = false;
       });
 
       element.addEventListener('mouseup', () => {
         if (isDown) {
-          this.snapToNearestItem(element);
+          startCheckingScrollStop();
         }
         isDown = false;
       });
@@ -177,7 +214,7 @@ export default {
 
       element.addEventListener('touchend', () => {
         if (isDown) {
-          this.snapToNearestItem(element);
+          startCheckingScrollStop();
         }
         isDown = false;
       });
@@ -190,15 +227,21 @@ export default {
         element.scrollLeft = scrollLeft - walk;
       });
     },
+
     setupDynamicEffect(element) {
+      let isScrolling;
+
       element.addEventListener('scroll', () => {
         const items = element.querySelectorAll('.portfolio-item');
         const center = element.offsetWidth / 2;
-        const scrollLeft = element.scrollLeft;
 
         items.forEach((item) => {
+          const itemRect = item.getBoundingClientRect();
+          const elementRect = element.getBoundingClientRect();
+
           const itemCenter =
-            item.offsetLeft - scrollLeft + item.offsetWidth / 2;
+            (itemRect.left + itemRect.right) / 2 - elementRect.left;
+
           const distance = Math.abs(center - itemCenter);
 
           const maxDistance = center;
@@ -213,16 +256,21 @@ export default {
       // ページロード直後にも実行
       element.dispatchEvent(new Event('scroll'));
     },
-    snapToNearestItem(element) {
+
+    snapToClosestItem(element) {
       const items = element.querySelectorAll('.portfolio-item');
-      const centerX = element.scrollLeft + element.offsetWidth / 2;
+      const center = element.offsetWidth / 2;
+      const elementRect = element.getBoundingClientRect();
 
       let closestItem = null;
       let closestDistance = Infinity;
 
       items.forEach((item) => {
-        const itemCenterX = item.offsetLeft + item.offsetWidth / 2;
-        const distance = Math.abs(itemCenterX - centerX);
+        const itemRect = item.getBoundingClientRect();
+        const itemCenter =
+          (itemRect.left + itemRect.right) / 2 - elementRect.left;
+
+        const distance = Math.abs(center - itemCenter);
 
         if (distance < closestDistance) {
           closestDistance = distance;
@@ -231,17 +279,19 @@ export default {
       });
 
       if (closestItem) {
-        const targetScroll =
-          closestItem.offsetLeft +
-          closestItem.offsetWidth / 2 -
-          element.offsetWidth / 2;
+        const itemRect = closestItem.getBoundingClientRect();
+        const itemCenter =
+          (itemRect.left + itemRect.right) / 2 - elementRect.left;
 
-        element.scrollTo({
-          left: targetScroll,
-          behavior: 'smooth',
+        const scrollAdjust = itemCenter - center;
+
+        element.scrollBy({
+          left: scrollAdjust,
+          behavior: 'smooth', // なめらかに動かす
         });
       }
     },
+
     scrollToFirstItem(element) {
       const firstItem = element.querySelector('.portfolio-item');
       if (firstItem) {
@@ -256,7 +306,7 @@ export default {
         });
 
         // 明示的にリサイズも一度発火させると完璧
-        this.snapToNearestItem(element);
+        this.snapToClosestItem(element);
       }
     },
   },
@@ -341,6 +391,10 @@ export default {
             font-size: 0.875rem;
             color: $dark;
           }
+        }
+        .portfolio-spacer {
+          flex: 0 0 calc(50% - 80px); /* 80pxはportfolio-itemの横幅の半分に調整する */
+          pointer-events: none; /* 空白部分はクリックできないように */
         }
       }
     }
