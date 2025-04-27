@@ -31,7 +31,7 @@ export default {
 body {
   background-color: $body-bg;
   color: $body-color;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: $font-body;
 }
 
 .app-container {
@@ -43,6 +43,7 @@ body {
 .main-content {
   flex: 1; /* フッターを画面下部に固定するためにメインコンテンツを伸縮可能に */
   width: 80%;
+  min-width: 320px; /* 最小幅を設定 */
   max-width: 960px; /* 最大幅を設定 */
   margin: 0 auto; /* 中央揃え */
   padding: 1rem; /* 余白を追加 */

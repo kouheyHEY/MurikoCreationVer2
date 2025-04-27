@@ -22,7 +22,6 @@ export default {
     return {
       menu: [
         { label: 'Home', path: '/' },
-        { label: 'Portfolio', path: '/portfolio' },
         { label: 'Blog', path: '/blog' },
         { label: 'About', path: '/about' },
       ],

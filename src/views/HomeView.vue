@@ -32,17 +32,19 @@
           >
             <router-link
               :to="{
-                name: 'Portfolio',
+                name: 'PortfolioDetail',
                 params: { category: 'game', id: item.id },
               }"
             >
-              <img
-                :src="item.thumbnail"
-                :alt="item.title"
-                class="portfolio-thumbnail"
-              />
-              <p class="portfolio-title">{{ item.title }}</p>
-              <p class="portfolio-date">{{ item.date }}</p>
+              <div>
+                <img
+                  :src="item.thumbnail"
+                  :alt="item.title"
+                  class="portfolio-thumbnail"
+                />
+                <p class="portfolio-title pb-2 m-0">{{ item.title }}</p>
+                <p class="portfolio-date pb-2 m-0">{{ item.date }}</p>
+              </div>
             </router-link>
           </div>
         </div>
@@ -59,17 +61,19 @@
           >
             <router-link
               :to="{
-                name: 'Portfolio',
+                name: 'PortfolioDetail',
                 params: { category: 'web', id: item.id },
               }"
             >
-              <img
-                :src="item.thumbnail"
-                :alt="item.title"
-                class="portfolio-thumbnail"
-              />
-              <p class="portfolio-title">{{ item.title }}</p>
-              <p class="portfolio-date">{{ item.date }}</p>
+              <div>
+                <img
+                  :src="item.thumbnail"
+                  :alt="item.title"
+                  class="portfolio-thumbnail"
+                />
+                <p class="portfolio-title">{{ item.title }}</p>
+                <p class="portfolio-date">{{ item.date }}</p>
+              </div>
             </router-link>
           </div>
         </div>
@@ -260,7 +264,6 @@ export default {
             font-size: 1rem;
             font-weight: bold;
             color: $primary;
-            margin-bottom: 0.25rem;
           }
 
           .portfolio-date {

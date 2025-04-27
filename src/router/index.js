@@ -4,11 +4,19 @@ import AboutView from '../views/AboutView.vue';
 import BlogView from '../views/BlogView.vue';
 import ContactView from '../views/ContactView.vue';
 import HomeView from '../views/HomeView.vue';
-import PortfolioView from '../views/portfolio/PortfolioView.vue';
+import PortfolioDetailView from '../views/PortfolioDetailView.vue';
 
 const routes = [
   { path: '/', name: 'Home', component: HomeView },
-  { path: '/portfolio', name: 'Portfolio', component: PortfolioView },
+  {
+    path: '/portfolio/:category/:id',
+    name: 'PortfolioDetail',
+    component: PortfolioDetailView,
+    props: (route) => ({
+      category: route.params.category,
+      id: Number(route.params.id), // ← ここでNumberに変換！！
+    }),
+  },
   { path: '/blog', name: 'Blog', component: BlogView },
   { path: '/about', name: 'About', component: AboutView },
   { path: '/contact', name: 'Contact', component: ContactView },
