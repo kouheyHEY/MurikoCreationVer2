@@ -4,28 +4,25 @@
     style="background-color: #1e0033"
   >
     <div class="container">
-      <router-link class="navbar-brand" to="/">MyPortfolio</router-link>
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item" v-for="item in menu" :key="item.path">
-          <router-link class="nav-link" :to="item.path">{{
-            item.label
-          }}</router-link>
-        </li>
-      </ul>
+      <router-link class="navbar-brand title d-flex align-items-center" to="/">
+        <img
+          src="/src/assets/images/logo_header_1_48x48.png"
+          alt="Logo"
+          class="logo-icon me-2"
+        />
+        むりこクリエイション
+      </router-link>
     </div>
   </nav>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      menu: [
-        { label: 'Home', path: '/' },
-        { label: 'Blog', path: '/blog' },
-        { label: 'About', path: '/about' },
-      ],
-    };
-  },
-};
-</script>
+<style lang="scss" scoped>
+.title {
+  font-size: 1.5rem;
+  font-family: $pixel-font-bold;
+}
+
+.logo-icon {
+  object-fit: contain; // アイコンの比率を維持
+}
+</style>
