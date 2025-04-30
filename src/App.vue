@@ -32,6 +32,7 @@ body {
   background-color: $body-bg;
   color: $body-color;
   font-family: $font-body;
+  // font-family: $pixel-font-regular;
 }
 
 .app-container {

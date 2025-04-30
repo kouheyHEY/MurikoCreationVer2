@@ -19,23 +19,30 @@ export default {
     // 上下のマージン
     margin: {
       type: String,
-      default: '1rem 0',
+      default: '0.5rem 0',
     },
     // 線のスタイル
-    style: {
+    borderstyle: {
       type: String,
       default: 'solid',
+    },
+    // 透明度
+    opacity: {
+      type: Number,
+      default: 1,
     },
   },
   computed: {
     customHr() {
       return {
-        borderBottom: `${this.thickness} ${this.style} ${this.color}`,
+        borderBottom: `${this.thickness} ${this.borderstyle} ${this.color}`,
         margin: this.margin,
         borderTop: 'none',
         borderLeft: 'none',
         borderRight: 'none',
         width: this.width || '100%',
+        opacity: this.opacity,
+        // ここでwidthを指定しない場合は100%になる
       };
     },
   },

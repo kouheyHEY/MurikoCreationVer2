@@ -2,9 +2,10 @@
   <div class="home-view text-center pt-2 pb-5">
     <h1 class="title pb-3">Pick a work !</h1>
     <div class="portfolio-grid">
-      <div
+      <router-link
         v-for="portfolio in portfolios"
         :key="portfolio.id"
+        :to="`/portfolio/${portfolio.category}/${portfolio.id}`"
         class="portfolio-item rounded-1"
         :style="{
           transform: `rotate(${portfolio.rotation}deg) scale(${portfolio.hovered ? 0.9 : 1})`,
@@ -13,7 +14,7 @@
         @mouseleave="portfolio.hovered = false"
       >
         <img :src="portfolio.thumbnail" :alt="portfolio.category" />
-      </div>
+      </router-link>
     </div>
   </div>
 </template>
