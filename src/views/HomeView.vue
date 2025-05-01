@@ -23,46 +23,33 @@
 export default {
   data() {
     return {
-      portfolios: [
-        {
-          id: 1,
-          category: 'game',
-          thumbnail: '/src/assets/images/thumbneil_default_1200x1200.png',
-          rotation: 0,
-          hovered: false,
-        },
-        {
-          id: 2,
-          category: 'game',
-          thumbnail: '/src/assets/images/thumbneil_default_1200x1200.png',
-          rotation: 0,
-          hovered: false,
-        },
-        {
-          id: 3,
-          category: 'game',
-          thumbnail: '/src/assets/images/thumbneil_default_1200x1200.png',
-          rotation: 0,
-          hovered: false,
-        },
-        {
-          id: 4,
-          category: 'web',
-          thumbnail: '/src/assets/images/thumbneil_default_1200x1200.png',
-          rotation: 0,
-          hovered: false,
-        },
-      ],
+      portfolios: [], // 初期値を空配列に設定
     };
   },
   mounted() {
-    this.portfolios.forEach((p) => {
-      p.rotation = this.getRandomRotation();
-    });
+    // JSON データを参照してポートフォリオデータを構築
+    fetch('/data/portfolioData.json')
+      .then((res) => res.json())
+      .then((portfolioData) => {
+        this.portfolios = Object.entries(portfolioData).flatMap(
+          ([category, items]) =>
+            items.map((item) => ({
+              id: item.id,
+              title: item.title,
+              description: item.description,
+              category,
+              thumbnail: item.thumbnail
+                ? `/data/${item.thumbnail}`
+                : '/data/images/thumbneil_default_1200x1200.png',
+              rotation: this.getRandomRotation(),
+              hovered: false,
+            }))
+        );
+      });
   },
   methods: {
     getRandomRotation() {
-      return Math.random() * 10 - 5;
+      return Math.random() * 10 - 5; // ランダムな回転角度を生成
     },
   },
 };

@@ -1,12 +1,12 @@
 <script>
-import HorizontalRule from '@/components/HorizontalRule.vue'; // HorizontalRule をインポート
-import { getTechIcon } from '@/utils/iconLibrary'; // アイコン取得関数をインポート
+import HorizontalRule from '@/components/HorizontalRule.vue';
+import { getTechIcon } from '@/utils/iconLibrary';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 export default {
   components: {
     FontAwesomeIcon,
-    HorizontalRule, // HorizontalRule コンポーネントを登録
+    HorizontalRule,
   },
   props: {
     category: {
@@ -28,100 +28,34 @@ export default {
     };
   },
   mounted() {
-    const portfolioData = {
-      game: [
-        {
-          id: 1,
-          title: 'ゲーム作品1',
-          date: '2025年4月1日',
-          thumbnail: '/src/assets/images/thumbneil_default_1200x1200.png',
-          tech: [
-            {
-              label: 'プログラミング',
-              items: [{ item: 'Unity' }, { item: 'C#' }],
-            },
-            {
-              label: 'デザイン',
-              items: [{ item: 'Photoshop' }, { item: 'Illustrator' }],
-            },
-          ],
-          description: 'このゲームはレトロスタイルのアクションゲームです。',
-        },
-        {
-          id: 2,
-          title: 'ゲーム作品2',
-          date: '2025年4月2日',
-          thumbnail: '/src/assets/images/thumbneil_default_1200x1200.png',
-          tech: [
-            {
-              label: 'プログラミング',
-              items: [{ item: 'Unreal Engine' }, { item: 'C++' }],
-            },
-            {
-              label: 'デザイン',
-              items: [{ item: 'Blender' }, { item: 'Substance Painter' }],
-            },
-          ],
-          description: 'このゲームはリアルタイムストラテジーゲームです。',
-        },
-      ],
-      web: [
-        {
-          id: 1,
-          title: 'Web作品1',
-          date: '2025年4月4日',
-          thumbnail: '/src/assets/images/thumbneil_default_1200x1200.png',
-          tech: [
-            {
-              label: 'フロントエンド',
-              items: [{ item: 'Vue.js' }, { item: 'Sass' }],
-            },
-            {
-              label: 'バックエンド',
-              items: [{ item: 'Node.js' }, { item: 'Express' }],
-            },
-          ],
-          description: 'このWebアプリはタスク管理ツールです。',
-        },
-        {
-          id: 2,
-          title: 'Web作品2',
-          date: '2025年4月5日',
-          thumbnail: '/src/assets/images/thumbneil_default_1200x1200.png',
-          tech: [
-            {
-              label: 'フロントエンド',
-              items: [{ item: 'React' }, { item: 'TypeScript' }],
-            },
-            {
-              label: 'バックエンド',
-              items: [{ item: 'Firebase' }],
-            },
-          ],
-          description: 'このWebアプリはチャットアプリケーションです。',
-        },
-      ],
-    };
+    fetch('/data/portfolioData.json')
+      .then((res) => res.json())
+      .then((data) => {
+        const categoryData = data[this.category];
+        const item = categoryData.find((item) => item.id === this.id);
 
-    const categoryData = portfolioData[this.category];
-    const item = categoryData.find((item) => item.id === this.id);
+        if (item) {
+          this.thumbnail = item.thumbnail
+            ? `/data/${item.thumbnail}`
+            : '/data/images/thumbneil_default_1200x1200.png';
 
-    if (item) {
-      this.thumbnail = item.thumbnail;
-      this.title = item.title;
-      this.date = item.date;
-      this.description = item.description;
+          this.title = item.title;
+          this.date = item.date;
+          this.description = item.description;
 
-      // アイコンを取得して tech 配列を構築
-      this.tech = item.tech.map((group) => ({
-        label: group.label,
-        labelIcon: getTechIcon(group.label),
-        items: group.items.map((techItem) => ({
-          name: techItem.item,
-          icon: getTechIcon(techItem.item),
-        })),
-      }));
-    }
+          this.tech = item.tech.map((group) => ({
+            label: group.label,
+            labelIcon: getTechIcon(group.label),
+            items: group.items.map((techItem) => ({
+              name: techItem,
+              icon: getTechIcon(techItem),
+            })),
+          }));
+        }
+      })
+      .catch((err) => {
+        console.error('ポートフォリオデータの読み込みに失敗しました', err);
+      });
   },
 };
 </script>
