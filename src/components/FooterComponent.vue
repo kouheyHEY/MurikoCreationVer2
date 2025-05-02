@@ -1,50 +1,84 @@
 <template>
   <footer class="footer text-center py-4 mt-5">
     <div class="container">
-      <p class="mb-2">&copy; {{ currentYear }} My Portfolio</p>
-      <div>
+      <div class="mb-3">
         <a
-          v-for="link in socialLinks"
+          v-for="link in footerContent?.links"
           :key="link.name"
           :href="link.url"
           target="_blank"
           class="mx-2 footer-link"
         >
-          {{ link.name }}
+          <FontAwesomeIcon
+            v-if="link.icon.type === 'fa'"
+            :icon="link.icon.icon"
+            class="footer-icon"
+          />
         </a>
       </div>
+      <!-- <div class="mb-3">
+        <FontAwesomeIcon icon="envelope" class="me-2 footer-icon" />
+        <a :href="`mailto:${footerContent?.email}`" class="footer-link">
+          {{ footerContent?.email }}
+        </a>
+      </div> -->
+      <p class="mb-1">
+        &copy; {{ currentYear }} {{ footerContent?.copyright }}
+      </p>
     </div>
   </footer>
 </template>
 
 <script>
+import { fetchJson } from '@/utils/fetchJson';
+import { getTechIcon } from '@/utils/iconLibrary';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+
 export default {
+  components: {
+    FontAwesomeIcon,
+  },
   data() {
     return {
       currentYear: new Date().getFullYear(),
-      socialLinks: [
-        { name: 'GitHub', url: 'https://github.com/yourusername' },
-        { name: 'Twitter', url: 'https://twitter.com/yourusername' },
-        { name: 'Blog', url: '/blog' },
-      ],
+      footerContent: null, // フッターのデータを格納
     };
+  },
+  mounted() {
+    // フッターのデータを取得
+    fetchJson('/data/footerContent.json')
+      .then((data) => {
+        // 各リンクにアイコンを追加
+        this.footerContent = {
+          ...data,
+          links: data.links.map((link) => ({
+            ...link,
+            icon: getTechIcon(link.name),
+          })),
+        };
+      })
+      .catch((error) => console.error('Failed to load footer content:', error));
   },
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .footer {
-  background-color: #1e0033;
-  color: #dcdbff;
+  background-color: $dark; // custom.scss の $dark を使用
+  color: $light; // custom.scss の $light を使用
 }
 
 .footer-link {
-  color: #0ca;
+  color: $light; // custom.scss の $light を使用
   text-decoration: none;
+  transition: color 0.3s ease; // ホバー時の色変更にトランジションを追加
+
+  &:hover {
+    color: $success; // custom.scss の $success を使用
+  }
 }
 
-.footer-link:hover {
-  color: #7a63ff;
-  text-decoration: underline;
+.footer-icon {
+  font-size: 1.5rem; // アイコンのサイズを調整
 }
 </style>

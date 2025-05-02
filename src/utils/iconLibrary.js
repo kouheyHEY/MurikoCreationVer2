@@ -1,20 +1,25 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
+  faBluesky,
   faFigma,
   faGitAlt,
   faGithub,
+  faItchIo,
   faJsSquare,
   faNodeJs,
   faNpm,
   faReact,
   faSass,
+  faTumblr,
   faUnity,
   faVuejs,
+  faXTwitter,
 } from '@fortawesome/free-brands-svg-icons';
 import {
   faCode,
   faCogs,
   faDatabase,
+  faEnvelope,
   faPaintBrush,
   faToolbox,
 } from '@fortawesome/free-solid-svg-icons';
@@ -25,6 +30,7 @@ library.add(
   faDatabase,
   faPaintBrush,
   faToolbox,
+  faEnvelope,
   faFigma,
   faGitAlt,
   faGithub,
@@ -34,7 +40,11 @@ library.add(
   faReact,
   faSass,
   faUnity,
-  faVuejs
+  faVuejs,
+  faXTwitter, // X (旧Twitter)
+  faBluesky, // Bluesky
+  faTumblr, // Tumblr
+  faItchIo // itch.io
 );
 
 import { PaintBrushIcon } from '@heroicons/vue/24/solid';
@@ -56,6 +66,10 @@ export const techIcons = {
   Figma: { type: 'fa', icon: ['fab', 'figma'] },
   Photoshop: { type: 'hero', icon: PaintBrushIcon },
   Illustrator: { type: 'hero', icon: PaintBrushIcon },
+  X: { type: 'fa', icon: ['fab', 'x-twitter'] },
+  Bluesky: { type: 'fa', icon: ['fab', 'bluesky'] },
+  Tumblr: { type: 'fa', icon: ['fab', 'tumblr'] },
+  'itch.io': { type: 'fa', icon: ['fab', 'itch-io'] }, // itch.io を追加
   その他: { type: 'fa', icon: 'toolbox' },
 };
 

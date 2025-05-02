@@ -16,20 +16,46 @@
         <img :src="portfolio.thumbnail" :alt="portfolio.category" />
       </router-link>
     </div>
+
+    <!-- About Section -->
+    <div class="about-section mt-5" v-if="about">
+      <h1 class="title pb-3">{{ about.title }}</h1>
+      <div v-html="renderMarkdown(about.content)"></div>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="contact-section mt-5" v-if="contact">
+      <h1 class="title pb-3">{{ contact.title }}</h1>
+      <div v-html="renderMarkdown(contact.content)"></div>
+      <div class="contact-email mt-3">
+        <FontAwesomeIcon icon="envelope" class="me-2 contact-icon" />
+        <a :href="`mailto:${contact.email}`" class="contact-link">
+          {{ contact.email }}
+        </a>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import { fetchJson } from '@/utils/fetchJson';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { marked } from 'marked';
+
 export default {
+  components: {
+    FontAwesomeIcon,
+  },
   data() {
     return {
       portfolios: [], // 初期値を空配列に設定
+      about: null, // About セクションのデータ
+      contact: null, // Contact セクションのデータ
     };
   },
   mounted() {
-    // JSON データを参照してポートフォリオデータを構築
-    fetch('/data/portfolioData.json')
-      .then((res) => res.json())
+    // ポートフォリオデータを取得
+    fetchJson('/data/portfolioData.json')
       .then((portfolioData) => {
         this.portfolios = Object.entries(portfolioData).flatMap(
           ([category, items]) =>
@@ -45,11 +71,23 @@ export default {
               hovered: false,
             }))
         );
-      });
+      })
+      .catch((error) => console.error('Failed to load portfolio data:', error));
+
+    // サイトコンテンツデータを取得
+    fetchJson('/data/siteContent.json')
+      .then((siteContent) => {
+        this.about = siteContent.about;
+        this.contact = siteContent.contact;
+      })
+      .catch((error) => console.error('Failed to load site content:', error));
   },
   methods: {
     getRandomRotation() {
       return Math.random() * 10 - 5; // ランダムな回転角度を生成
+    },
+    renderMarkdown(content) {
+      return marked(content); // マークダウンを HTML に変換
     },
   },
 };
@@ -82,6 +120,54 @@ export default {
     width: 100%;
     height: auto;
     display: block;
+  }
+}
+
+.about-section,
+.contact-section {
+  margin-top: 2rem;
+  text-align: center;
+
+  h2 {
+    font-size: 2rem;
+    color: $primary;
+    margin-bottom: 1rem;
+  }
+
+  div {
+    font-size: 1.2rem;
+    line-height: 1.6;
+  }
+
+  a {
+    color: $link-color;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.contact-email {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+
+  .contact-icon {
+    font-size: 1.5rem;
+    color: $primary;
+  }
+
+  .contact-link {
+    font-size: 1.2rem;
+    color: $link-color;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 </style>

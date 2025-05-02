@@ -65,7 +65,7 @@ export default {
     <img
       :src="thumbnail"
       alt="サムネイル"
-      class="portfolio-thumbnail d-block mx-auto mb-4"
+      class="portfolio-thumbnail d-block mx-auto mb-4 rounded-2"
     />
     <h1 class="portfolio-title text-left ps-2">{{ title }}</h1>
     <HorizontalRule />
