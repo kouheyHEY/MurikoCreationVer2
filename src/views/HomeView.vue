@@ -20,24 +20,31 @@
     <!-- About Section -->
     <div class="about-section mt-5" v-if="about">
       <h1 class="title pb-3">{{ about.title }}</h1>
-      <div v-html="renderMarkdown(about.content)"></div>
+      <div v-html="renderMarkdown(about.abstract)"></div>
+      <CustomButton to="/about" customClass="mt-3">
+        <span>Check status</span>
+      </CustomButton>
     </div>
 
     <!-- Contact Section -->
     <div class="contact-section mt-5" v-if="contact">
       <h1 class="title pb-3">{{ contact.title }}</h1>
-      <div v-html="renderMarkdown(contact.content)"></div>
+      <div v-html="renderMarkdown(contact.abstract)"></div>
       <div class="contact-email mt-3">
         <FontAwesomeIcon icon="envelope" class="me-2 contact-icon" />
         <a :href="`mailto:${contact.email}`" class="contact-link">
           {{ contact.email }}
         </a>
       </div>
+      <CustomButton to="/contact" customClass="mt-3">
+        <span>Send a message</span>
+      </CustomButton>
     </div>
   </div>
 </template>
 
 <script>
+import CustomButton from '@/components/CustomButton.vue';
 import { fetchJson } from '@/utils/fetchJson';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { marked } from 'marked';
@@ -45,6 +52,7 @@ import { marked } from 'marked';
 export default {
   components: {
     FontAwesomeIcon,
+    CustomButton,
   },
   data() {
     return {
@@ -120,6 +128,8 @@ export default {
     width: 100%;
     height: auto;
     display: block;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
   }
 }
 
@@ -168,6 +178,21 @@ export default {
     &:hover {
       text-decoration: underline;
     }
+  }
+}
+
+.btn-custom {
+  background-color: $primary;
+  color: $light;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: $secondary;
+    color: $light;
   }
 }
 </style>

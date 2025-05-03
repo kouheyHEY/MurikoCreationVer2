@@ -69,36 +69,33 @@ export default {
     />
     <h1 class="portfolio-title text-left ps-2">{{ title }}</h1>
     <HorizontalRule />
-    <div class="portfolio-tech container">
+    <div class="portfolio-tech">
       <ul>
         <li v-for="(group, index) in tech" :key="index">
-          <div class="row">
-            <div class="col-lg-4 mb-2">
-              <strong class="tech-label">
+          <strong class="tech-label">
+            <FontAwesomeIcon
+              v-if="group.labelIcon.type === 'fa'"
+              :icon="group.labelIcon.icon"
+              class="me-2 tech-icon"
+            />
+            {{ group.label }}
+          </strong>
+          <div class="container">
+            <div
+              class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5"
+            >
+              <!-- <div class="row"> -->
+              <div
+                class="tech-item my-1 col"
+                v-for="(item, itemIndex) in group.items"
+                :key="itemIndex"
+              >
                 <FontAwesomeIcon
-                  v-if="group.labelIcon.type === 'fa'"
-                  :icon="group.labelIcon.icon"
+                  v-if="item.icon.type === 'fa'"
+                  :icon="item.icon.icon"
                   class="me-2 tech-icon"
                 />
-                {{ group.label }}
-              </strong>
-              <br />
-              <!-- ラベル名の次に改行を挟む -->
-            </div>
-            <div class="col-lg-8">
-              <div class="row">
-                <div
-                  class="col-6 tech-item my-1"
-                  v-for="(item, itemIndex) in group.items"
-                  :key="itemIndex"
-                >
-                  <FontAwesomeIcon
-                    v-if="item.icon.type === 'fa'"
-                    :icon="item.icon.icon"
-                    class="me-2 tech-icon"
-                  />
-                  <span class="icon-name">{{ item.name }}</span>
-                </div>
+                <span class="icon-name">{{ item.name }}</span>
               </div>
             </div>
           </div>
@@ -154,12 +151,12 @@ export default {
 }
 
 .tech-icon {
-  font-size: 2rem; /* アイコンを大きく */
+  font-size: 1.5rem; /* アイコンを大きく */
   color: inherit; /* アイコンの色を文字色と同じに設定 */
 }
 
 .tech-label {
-  font-size: 1.5rem; /* 技術ラベルの文字を大きく */
+  font-size: 1.25rem; /* 技術ラベルの文字を大きく */
   font-weight: bold; /* ラベルを強調 */
   display: inline-flex; /* アイコンとラベルを横並びに */
   align-items: center; /* アイコンとラベルを垂直方向に中央揃え */
@@ -167,19 +164,11 @@ export default {
 }
 
 .tech-item {
-  font-size: 1.4rem; /* 技術項目の文字を大きく */
+  font-size: 1.125rem; /* 技術項目の文字を大きく */
   display: flex; /* アイコンと文字を横並びに */
   align-items: center; /* アイコンと文字を垂直方向に中央揃え */
   margin-bottom: 0.5rem; /* 各技術項目の間隔を調整 */
-  flex: 1 1 100%; /* デフォルトは1列表示 */
   gap: 0.5rem; /* 改行時の間隔を調整 */
-}
-
-/* 画面幅が768px以上の場合は2列表示 */
-@media (min-width: 768px) {
-  .tech-item {
-    flex: 1 1 50%; /* 2列表示 */
-  }
 }
 
 .icon-name {
