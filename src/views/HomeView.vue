@@ -110,11 +110,6 @@ export default {
   min-height: 100vh;
 }
 
-.title {
-  font-size: 3rem;
-  color: $primary;
-}
-
 .portfolio-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));

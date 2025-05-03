@@ -8,7 +8,7 @@
       "tech": [
         {
           "label": "プログラミング",
-          "items": ["javascript"]
+          "items": ["JavaScript"]
         },
         {
           "label": "フレームワーク",
@@ -16,8 +16,7 @@
         },
         {
           "label": "その他ツール",
-          "items" : ["Node.js", "vscode"]
-
+          "items": ["Node.js", "vscode"]
         }
       ],
       "description": "スライムを操作してひたすら上へ進んでいく、縦スクロール型アクションゲームです。\n\nPhaserで作成したブラウザゲームを Electron でクラスプラットフォームのデスクトップアプリケーションにしました。操作は単純で"

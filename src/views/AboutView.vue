@@ -1,6 +1,6 @@
 <template>
-  <div class="container py-5">
-    <h2 class="text-primary mb-4">私について</h2>
+  <div class="pt-2 pb-5 text-center">
+    <h1 class="text-primary pb-3 title">About me</h1>
     <p>
       こんにちは、私はWebエンジニア兼クリエイターです。Vue・Flask・ゲーム制作・ツール制作などに取り組んでいます。
     </p>

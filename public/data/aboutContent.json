@@ -1,0 +1,61 @@
+{
+  "statusItems": [
+    {
+      "label": "Name",
+      "content": ["むりこクリエイション"]
+    },
+    {
+      "label": "Age",
+      "content": ["20s"]
+    },
+    {
+      "label": "Job",
+      "content": ["Webエンジニア"]
+    },
+    {
+      "label": "Experience",
+      "content": ["Webアプリ開発", "ゲーム制作"]
+    }
+  ],
+  "skills": [
+    {
+      "label": "Programming",
+      "contents": [
+        "Java",
+        "Python",
+        "JavaScript",
+        "TypeScript",
+        "HTML",
+        "CSS",
+        "PHP"
+      ]
+    },
+    {
+      "label": "Frameworks",
+      "contents": [
+        "Node.js",
+        "Vue.js",
+        "Flask",
+        "FastAPI",
+        "Vuetify",
+        "Bootstrap"
+      ]
+    },
+    {
+      "label": "Tools",
+      "contents": ["Git", "Github", "Docker", "vscode", "cursor"]
+    },
+    {
+      "label": "Databases",
+      "content": ["PostgreSQL", "Oracle", "MySQL"]
+    },
+    {
+      "label": "Cloud Services",
+      "content": ["AWS"]
+    },
+    {
+      "label": "Other",
+      "content": ["chatGPT", "openAI"]
+    }
+  ]
+}

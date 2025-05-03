@@ -10,14 +10,17 @@ export default defineConfig({
   plugins: [vue()],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'src') // ← ここで @ を src に対応
-    }
+      '@': path.resolve(__dirname, 'src'), // ← ここで @ を src に対応
+    },
   },
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: `@import "@/assets/styles/custom.scss";`
-      }
-    }
-  }
-})
+        additionalData: `
+          @import "@/assets/styles/custom.scss";
+          @import "@/assets/styles/common.scss"; // ← common.scss を追加
+        `,
+      },
+    },
+  },
+});

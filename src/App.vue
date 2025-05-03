@@ -62,10 +62,6 @@ body {
   }
 }
 
-.title {
-  font-family: $font-title;
-}
-
 p,
 .text {
   font-family: $font-body;

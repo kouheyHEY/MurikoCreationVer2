@@ -1,13 +1,11 @@
 {
   "about": {
     "title": "About me",
-    "abstract": "**バグより怖いのは、挑戦しないこと。**\n\n思考し続け、創り続け、挑み続ける。それが私のプレイスタイル。",
-    "content": {}
+    "abstract": "**バグより怖いのは、挑戦しないこと。**\n\n思考し続け、創り続け、挑み続ける。それが私のプレイスタイル。"
   },
   "contact": {
     "title": "Contact",
     "email": "murimurinko@gmail.com",
-    "abstract": "お問い合わせは以下のフォームからお願いします。",
-    "content": ""
+    "abstract": "お問い合わせは以下のフォームからお願いします。"
   }
 }
