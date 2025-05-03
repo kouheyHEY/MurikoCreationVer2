@@ -2,20 +2,25 @@
   "game": [
     {
       "id": 1,
-      "title": "ゲーム作品1",
-      "date": "2025年4月1日",
+      "title": "Slime Climb",
+      "date": "2024年12月27日",
       "thumbnail": "images/thumbneil_default_1200x1200.png",
       "tech": [
         {
           "label": "プログラミング",
-          "items": ["Unity", "C#"]
+          "items": ["javascript"]
         },
         {
-          "label": "デザイン",
-          "items": ["Photoshop", "Illustrator"]
+          "label": "フレームワーク",
+          "items": ["Phaser", "Electron"]
+        },
+        {
+          "label": "その他ツール",
+          "items" : ["Node.js", "vscode"]
+
         }
       ],
-      "description": "このゲームはレトロスタイルのアクションゲームです。"
+      "description": "スライムを操作してひたすら上へ進んでいく、縦スクロール型アクションゲームです。\n\nPhaserで作成したブラウザゲームを Electron でクラスプラットフォームのデスクトップアプリケーションにしました。操作は単純で"
     },
     {
       "id": 2,
