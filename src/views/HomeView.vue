@@ -21,8 +21,9 @@
     <div class="about-section mt-5" v-if="about">
       <h1 class="title pb-3">{{ about.title }}</h1>
       <div v-html="renderMarkdown(about.abstract)"></div>
-      <CustomButton to="/about" customClass="mt-3">
-        <span>Check status</span>
+      <CustomButton to="/about">
+        <!-- <FontAwesomeIcon icon="user" class="me-2" /> -->
+        <span class="pixel-font-button">Check status</span>
       </CustomButton>
     </div>
 
@@ -36,8 +37,9 @@
           {{ contact.email }}
         </a>
       </div>
-      <CustomButton to="/contact" customClass="mt-3">
-        <span>Send a message</span>
+      <CustomButton to="/contact">
+        <!-- <FontAwesomeIcon icon="paper-plane" class="me-2" /> -->
+        <span class="pixel-font-button">Send a message</span>
       </CustomButton>
     </div>
   </div>
@@ -181,18 +183,8 @@ export default {
   }
 }
 
-.btn-custom {
-  background-color: $primary;
+.pixel-font-button {
+  font-family: $font-title;
   color: $light;
-  border: none;
-  padding: 0.5rem 1.5rem;
-  font-size: 1rem;
-  border-radius: 0.25rem;
-  transition: background-color 0.3s ease;
-
-  &:hover {
-    background-color: $secondary;
-    color: $light;
-  }
 }
 </style>

@@ -62,13 +62,6 @@ body {
   }
 }
 
-footer {
-  background-color: $dark;
-  color: white;
-  padding: 1rem;
-  text-align: center;
-}
-
 .title {
   font-family: $font-title;
 }

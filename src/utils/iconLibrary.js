@@ -21,7 +21,9 @@ import {
   faDatabase,
   faEnvelope,
   faPaintBrush,
+  faPaperPlane,
   faToolbox,
+  faUser,
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -37,9 +39,11 @@ library.add(
   faJsSquare,
   faNodeJs,
   faNpm,
+  faPaperPlane,
   faReact,
   faSass,
   faUnity,
+  faUser,
   faVuejs,
   faXTwitter, // X (旧Twitter)
   faBluesky, // Bluesky
