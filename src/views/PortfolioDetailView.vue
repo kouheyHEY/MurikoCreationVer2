@@ -1,6 +1,7 @@
 <script>
-import HorizontalRule from '@/components/HorizontalRule.vue';
-import IconAndName from '@/components/IconAndName.vue';
+import HorizontalRule from '@/components/common/HorizontalRule.vue';
+import IconAndName from '@/components/common/IconAndName.vue';
+import TechList from '@/components/TechList.vue';
 import { getTechIcon } from '@/utils/iconLibrary';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
@@ -9,6 +10,7 @@ export default {
     FontAwesomeIcon,
     HorizontalRule,
     IconAndName,
+    TechList,
   },
   props: {
     category: {
@@ -75,26 +77,12 @@ export default {
       <ul>
         <li v-for="(group, index) in tech" :key="index">
           <strong class="tech-label">
-            <FontAwesomeIcon
-              v-if="group.labelIcon.type === 'fa'"
-              :icon="group.labelIcon.icon"
-              class="me-2 tech-icon"
-            />
-            {{ group.label }}
+            <IconAndName
+              :icon="group.labelIcon"
+              :name="group.label"
+            ></IconAndName>
           </strong>
-          <div class="container">
-            <div
-              class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5"
-            >
-              <div
-                class="tech-item my-1 col"
-                v-for="(item, itemIndex) in group.items"
-                :key="itemIndex"
-              >
-                <IconAndName :icon="item.icon" :name="item.name" />
-              </div>
-            </div>
-          </div>
+          <TechList :items="group.items" />
           <HorizontalRule
             v-if="index < tech.length - 1"
             opacity="0.3"

@@ -1,7 +1,7 @@
 <template>
   <div class="icon-and-name">
     <FontAwesomeIcon
-      v-if="icon.type === 'fa'"
+      v-if="isDispIcon && icon.type === 'fa'"
       :icon="icon.icon"
       class="me-2 tech-icon"
     />
@@ -24,6 +24,10 @@ export default {
     name: {
       type: String,
       required: true,
+    },
+    isDispIcon: {
+      type: Boolean,
+      default: true,
     },
   },
 };

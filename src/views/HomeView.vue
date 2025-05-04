@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import CustomButton from '@/components/CustomButton.vue';
+import CustomButton from '@/components/common/CustomButton.vue';
 import { fetchJson } from '@/utils/fetchJson';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { marked } from 'marked';

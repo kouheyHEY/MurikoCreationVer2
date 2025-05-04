@@ -20,42 +20,38 @@
   "skills": [
     {
       "label": "Programming",
-      "contents": [
-        "Java",
-        "Python",
-        "JavaScript",
-        "TypeScript",
-        "HTML",
-        "CSS",
-        "PHP"
-      ]
+      "contents": ["Java", "Python", "JavaScript", "TypeScript", "PHP"]
     },
     {
       "label": "Frameworks",
       "contents": [
         "Node.js",
         "Vue.js",
+        "Vuetify",
         "Flask",
         "FastAPI",
-        "Vuetify",
         "Bootstrap"
       ]
     },
     {
       "label": "Tools",
-      "contents": ["Git", "Github", "Docker", "vscode", "cursor"]
+      "contents": ["Git", "GitHub", "Docker"]
     },
     {
       "label": "Databases",
-      "content": ["PostgreSQL", "Oracle", "MySQL"]
+      "contents": ["PostgreSQL", "Oracle", "MySQL"]
     },
     {
       "label": "Cloud Services",
-      "content": ["AWS"]
+      "contents": ["AWS"]
     },
     {
       "label": "Other",
-      "content": ["chatGPT", "openAI"]
+      "contents": ["ChatGPT", "openAI"]
     }
-  ]
+  ],
+  "explanation": {
+    "label": "Policy",
+    "content": "**バグより怖いのは、挑戦しないこと。思考し続け、創り続け、挑み続ける。**\n\n「人間は考える葦である。」という言葉があるように、考えることが人間の武器であり、可能な限り考え続け、そして挑戦し続けることが何より大切だと思っています。"
+  }
 }
