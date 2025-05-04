@@ -1,7 +1,6 @@
 <template>
   <div class="about-view pt-2">
     <h1 class="text-primary pb-3 title">About me</h1>
-
     <div v-if="aboutContent">
       <HorizontalRule opacity="0.3" borderstyle="dotted" />
       <section class="status-section my-2 ms-2 py-1">
@@ -20,10 +19,13 @@
       </section>
       <HorizontalRule opacity="0.3" borderstyle="dotted" />
       <section class="about-section my-2 ms-2 py-1">
-        <strong class="status-label">{{
+        <strong class="status-label d-block mb-3">{{
           aboutContent.explanation.label
         }}</strong>
-        <div v-html="aboutContent.explanation.content"></div>
+        <div
+          v-html="renderMarkdown(aboutContent.explanation.content)"
+          class="ps-2"
+        ></div>
       </section>
       <HorizontalRule opacity="0.3" borderstyle="dotted" />
       <section class="skills-section my-2 ms-2 py-1">
@@ -62,6 +64,7 @@ import IconAndName from '@/components/common/IconAndName.vue';
 import TechList from '@/components/TechList.vue';
 import { fetchJson } from '@/utils/fetchJson';
 import { getTechIcon } from '@/utils/iconLibrary';
+import { renderMarkdown } from '@/utils/util.js';
 
 export default {
   components: {
@@ -92,6 +95,9 @@ export default {
         };
       })
       .catch((error) => console.error('Failed to load about content:', error));
+  },
+  methods: {
+    renderMarkdown, // util.js の関数を使用
   },
 };
 </script>

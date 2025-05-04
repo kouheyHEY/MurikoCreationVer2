@@ -48,8 +48,8 @@
 <script>
 import CustomButton from '@/components/common/CustomButton.vue';
 import { fetchJson } from '@/utils/fetchJson';
+import { getRandomRotation, renderMarkdown } from '@/utils/util.js';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { marked } from 'marked';
 
 export default {
   components: {
@@ -77,7 +77,7 @@ export default {
               thumbnail: item.thumbnail
                 ? `/data/${item.thumbnail}`
                 : '/data/images/thumbneil_default_1200x1200.png',
-              rotation: this.getRandomRotation(),
+              rotation: getRandomRotation(), // util.js の関数を使用
               hovered: false,
             }))
         );
@@ -93,12 +93,7 @@ export default {
       .catch((error) => console.error('Failed to load site content:', error));
   },
   methods: {
-    getRandomRotation() {
-      return Math.random() * 10 - 5; // ランダムな回転角度を生成
-    },
-    renderMarkdown(content) {
-      return marked(content); // マークダウンを HTML に変換
-    },
+    renderMarkdown, // util.js の関数を使用
   },
 };
 </script>
