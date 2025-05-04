@@ -1,5 +1,6 @@
 <script>
 import HorizontalRule from '@/components/HorizontalRule.vue';
+import IconAndName from '@/components/IconAndName.vue';
 import { getTechIcon } from '@/utils/iconLibrary';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
@@ -7,6 +8,7 @@ export default {
   components: {
     FontAwesomeIcon,
     HorizontalRule,
+    IconAndName,
   },
   props: {
     category: {
@@ -84,22 +86,15 @@ export default {
             <div
               class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5"
             >
-              <!-- <div class="row"> -->
               <div
                 class="tech-item my-1 col"
                 v-for="(item, itemIndex) in group.items"
                 :key="itemIndex"
               >
-                <FontAwesomeIcon
-                  v-if="item.icon.type === 'fa'"
-                  :icon="item.icon.icon"
-                  class="me-2 tech-icon"
-                />
-                <span class="icon-name">{{ item.name }}</span>
+                <IconAndName :icon="item.icon" :name="item.name" />
               </div>
             </div>
           </div>
-          <!-- カテゴリ間にだけ横線を表示 -->
           <HorizontalRule
             v-if="index < tech.length - 1"
             opacity="0.3"
