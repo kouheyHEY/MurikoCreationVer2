@@ -4,7 +4,7 @@
       "id": 1,
       "title": "Slime Climb",
       "date": "2024年12月27日",
-      "thumbnail": "images/thumbneil_default_1200x1200.png",
+      "thumbnail": "images/thumbnail_slimeclime.png",
       "tech": [
         {
           "label": "プログラミング",
@@ -16,27 +16,31 @@
         },
         {
           "label": "その他ツール",
-          "items": ["Node.js", "vscode"]
+          "items": ["Node.js", "cursor"]
         }
       ],
-      "description": "スライムを操作してひたすら上へ進んでいく、縦スクロール型アクションゲームです。\n\nPhaserで作成したブラウザゲームを Electron でクラスプラットフォームのデスクトップアプリケーションにしました。操作は単純で"
+      "description": "スライムを操作してひたすら上へ進んでいく、縦スクロール型アクションゲームです。\n\nPhaser で作成したブラウザゲームを Electron でクロスプラットフォームのデスクトップアプリケーションにしました。短調すぎるゲームにならないよう、転生システムを実装しています。"
     },
     {
       "id": 2,
-      "title": "ゲーム作品2",
-      "date": "2025年4月2日",
-      "thumbnail": "images/thumbneil_default_1200x1200.png",
+      "title": "コインを投げるだけ",
+      "date": "2025年1月18日",
+      "thumbnail": "images/coin_thumbneil_2.png",
       "tech": [
         {
           "label": "プログラミング",
-          "items": ["Unreal Engine", "C++"]
+          "items": ["JavaScript"]
         },
         {
-          "label": "デザイン",
-          "items": ["Blender", "Substance Painter"]
+          "label": "フレームワーク",
+          "items": ["Phaser"]
+        },
+        {
+          "label": "その他ツール",
+          "items": ["Node.js", "cursor"]
         }
       ],
-      "description": "このゲームはリアルタイムストラテジーゲームです。"
+      "description": "コインを投げてひたすら所持金を増やしていくゲームです。\n\nある程度まで進めると、自動でゲームを進行できる状態にすることも可能です。\n\n生成AIによるコードの自動生成機能が使用可能なエディタの「cursor」を使用して、かなり制作期間を短縮することができました。"
     }
   ],
   "web": [
