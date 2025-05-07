@@ -46,20 +46,41 @@
   "web": [
     {
       "id": 1,
-      "title": "Web作品1",
-      "date": "2025年4月4日",
+      "title": "バーチャルみーちゃん",
+      "date": "2025年4月",
       "thumbnail": "images/thumbneil_default_1200x1200.png",
       "tech": [
         {
           "label": "フロントエンド",
-          "items": ["Vue.js", "Sass"]
+          "items": ["Vue.js", "Bootstrap"]
         },
         {
           "label": "バックエンド",
-          "items": ["Node.js", "Express"]
+          "items": ["Flask"]
+        },
+        {
+          "label": "その他ツール",
+          "items": ["ChatGPT", "Node.js","AWS","GitHub"]
         }
       ],
-      "description": "このWebアプリはタスク管理ツールです。"
+      "description": "AIを使用したアプリケーションが作成できないかと思い、OpenAIのapiを使用した、AIとのチャットコミュニケーションアプリを作成しました。\n\n日ごとに決まった回数、無料でチャットと会話ができます。\n\nこのAIはファインチューニングを用いてトークの学習をさせているので、人間に近い振る舞いをするようになっています。"
+    },
+    {
+      "id": 2,
+      "title": "ポートフォリオ",
+      "date": "2025年5月7日",
+      "thumbnail": "images/thumbneil_default_1200x1200.png",
+      "tech": [
+        {
+          "label": "フロントエンド",
+          "items": ["Vue.js", "Sass", "Bootstrap"]
+        },
+        {
+          "label": "その他ツール",
+          "items": ["Node.js"]
+        }
+      ],
+      "description": "自身の作品を公開する場、自分のことを紹介する手段としてホームページを作成しました。\n\n今まで何度かPHPなどの言語を使用して作成したことはありましたが、フレームワークを使用して作成したのは初めてなので良い経験になりました。\n\n作品の追加などのタイミングで随時更新していく予定です。"
     }
   ]
 }
