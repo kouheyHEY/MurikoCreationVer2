@@ -48,7 +48,7 @@
       "id": 1,
       "title": "バーチャルみーちゃん",
       "date": "2025年4月",
-      "thumbnail": "images/thumbneil_default_1200x1200.png",
+      "thumbnail": "images/thumbnail_VMchan.png",
       "tech": [
         {
           "label": "フロントエンド",
@@ -73,7 +73,7 @@
       "id": 2,
       "title": "ポートフォリオ",
       "date": "2025年5月7日",
-      "thumbnail": "images/thumbneil_default_1200x1200.png",
+      "thumbnail": "images/thumbnail_portfolio.png",
       "tech": [
         {
           "label": "フロントエンド",
