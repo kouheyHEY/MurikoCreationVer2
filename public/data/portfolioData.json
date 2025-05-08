@@ -52,11 +52,11 @@
       "tech": [
         {
           "label": "フロントエンド",
-          "items": ["Vue.js", "Bootstrap"]
+          "items": ["Vue.js", "Vite", "Bootstrap"]
         },
         {
           "label": "バックエンド",
-          "items": ["Flask"]
+          "items": ["Flask", "PostgreSQL"]
         },
         {
           "label": "その他ツール",
@@ -73,7 +73,7 @@
       "tech": [
         {
           "label": "フロントエンド",
-          "items": ["Vue.js", "Sass", "Bootstrap"]
+          "items": ["Vue.js", "Vite", "Sass", "Bootstrap"]
         },
         {
           "label": "その他ツール",
