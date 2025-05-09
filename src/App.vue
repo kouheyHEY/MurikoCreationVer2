@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <HeaderComponent />
-    <main class="main-content">
+    <main class="main-content" v-cloak>
       <router-view />
     </main>
     <FooterComponent />
@@ -21,6 +21,11 @@ export default {
 </script>
 
 <style lang="scss">
+[v-cloak] {
+  /* 読み込まれるまで非表示にする */
+  display: none;
+}
+
 /* リセット */
 * {
   margin: 0;

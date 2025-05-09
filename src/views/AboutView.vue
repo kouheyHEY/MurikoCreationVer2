@@ -1,8 +1,8 @@
 <template>
-  <div class="about-view pt-2">
+  <div v-if="dataReady" class="about-view pt-2">
     <h1 class="text-primary pb-3 title">About me</h1>
     <div v-if="aboutContent">
-      <HorizontalRule opacity="0.3" borderstyle="dotted" />
+      <HorizontalRule :opacity="0.3" borderstyle="dotted" />
       <section class="status-section my-2 ms-2 py-1">
         <ul class="p-0 m-0">
           <li v-for="(item, index) in aboutContent.statusItems" :key="index">
@@ -17,7 +17,7 @@
           </li>
         </ul>
       </section>
-      <HorizontalRule opacity="0.3" borderstyle="dotted" />
+      <HorizontalRule :opacity="0.3" borderstyle="dotted" />
       <section class="about-section my-2 ms-2 py-1">
         <strong class="status-label d-block mb-3">{{
           aboutContent.explanation.label
@@ -27,7 +27,7 @@
           class="ps-2"
         ></div>
       </section>
-      <HorizontalRule opacity="0.3" borderstyle="dotted" />
+      <HorizontalRule :opacity="0.3" borderstyle="dotted" />
       <section class="skills-section my-2 ms-2 py-1">
         <ul class="p-0 m-0">
           <li v-for="(skill, index) in aboutContent.skills" :key="index">
@@ -48,7 +48,7 @@
             <TechList :items="skill.items" :isDispIcon="false" class="m-0" />
             <HorizontalRule
               v-if="index < aboutContent.skills.length - 1"
-              opacity="0.3"
+              :opacity="0.3"
               borderstyle="dotted"
             /> -->
           </li>
@@ -56,11 +56,13 @@
       </section>
     </div>
   </div>
+  <LoadingSpinner v-else />
 </template>
 
 <script>
 import HorizontalRule from '@/components/common/HorizontalRule.vue';
 import IconAndName from '@/components/common/IconAndName.vue';
+import LoadingSpinner from '@/components/common/LoadingSpinner.vue';
 import TechList from '@/components/TechList.vue';
 import { fetchJson } from '@/utils/fetchJson';
 import { getTechIcon } from '@/utils/iconLibrary';
@@ -71,10 +73,12 @@ export default {
     HorizontalRule,
     IconAndName,
     TechList,
+    LoadingSpinner,
   },
   data() {
     return {
       aboutContent: null, // JSONデータを格納
+      dataReady: false, // データが読み込まれたかどうかのフラグ
     };
   },
   mounted() {
@@ -93,6 +97,7 @@ export default {
             itemNamesJoin: skill.contents.join(' / '),
           })),
         };
+        this.dataReady = true; // データが読み込まれたらフラグを更新
       })
       .catch((error) => console.error('Failed to load about content:', error));
   },

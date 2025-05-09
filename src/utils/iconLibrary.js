@@ -24,7 +24,9 @@ import {
   faXTwitter,
 } from '@fortawesome/free-brands-svg-icons';
 import {
+  faAtom,
   faBolt,
+  faBoltLightning,
   faBrain,
   faCloud,
   faCode,
@@ -32,9 +34,11 @@ import {
   faDatabase,
   faEnvelope,
   faFlask,
+  faICursor,
   faPaintBrush,
   faPaperPlane,
   faRobot,
+  faRocket,
   faToolbox,
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
@@ -67,6 +71,7 @@ library.add(
   faFlask, // Flask
   faCloud, // AWS
   faRobot, // chatGPT
+  faRocket, // Rocket
   faBrain, // openAI
   faJava,
   faPython,
@@ -74,7 +79,11 @@ library.add(
   faCss,
   faPhp,
   faBootstrap,
-  faBolt
+  faBoltLightning,
+  faBolt,
+  faAtom, // Atom
+  faICursor, // Cursor
+  faRocket
 );
 
 import { PaintBrushIcon } from '@heroicons/vue/24/solid';
@@ -110,16 +119,19 @@ export const techIcons = {
   Flask: { type: 'fa', icon: 'flask' },
   FastAPI: { type: 'fa', icon: ['fas', 'bolt'] },
   Vuetify: { type: 'fa', icon: ['fab', 'vuejs'] },
+  Vite: { type: 'fa', icon: 'bolt-lightning' },
   Bootstrap: { type: 'fa', icon: ['fab', 'bootstrap'] },
   Docker: { type: 'fa', icon: ['fab', 'docker'] },
   vscode: { type: 'fa', icon: ['fab', 'microsoft'] },
-  cursor: { type: 'fa', icon: 'cursor' },
+  cursor: { type: 'fa', icon: 'i-cursor' },
   PostgreSQL: { type: 'fa', icon: 'database' },
   Oracle: { type: 'fa', icon: 'database' },
   MySQL: { type: 'fa', icon: 'database' },
   AWS: { type: 'fa', icon: 'cloud' },
   ChatGPT: { type: 'fa', icon: 'robot' },
   openAI: { type: 'fa', icon: 'brain' },
+  Phaser: { type: 'fa', icon: 'rocket' },
+  Electron: { type: 'fa', icon: 'atom' },
 
   // デフォルトアイコン
   その他: { type: 'fa', icon: 'toolbox' },

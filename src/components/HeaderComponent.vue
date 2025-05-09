@@ -1,14 +1,13 @@
 <template>
   <nav class="navbar navbar-expand-lg">
     <div class="container">
-      <!-- TODO: ヘッダの色が変なので修正 -->
       <router-link class="navbar-brand title d-flex align-items-center" to="/">
         <img
           src="/src/assets/images/logo_header_1_48x48.png"
           alt="Logo"
           class="logo-icon me-2"
         />
-        むりこクリエイション
+        <span class="logo-text">むりこクリエイション</span>
       </router-link>
     </div>
   </nav>
@@ -22,11 +21,11 @@
 .title {
   font-size: 1.5rem;
   font-family: $pixel-font-bold;
-  color: $light; // 通常時の文字色
+  color: $light !important; // 通常時の文字色
   transition: color 0.3s ease; // ホバー時の色変更にトランジションを追加
 
   &:hover {
-    color: $secondary; // ホバー時の文字色をカスタム.scss の $secondary に変更
+    color: $secondary !important; // ホバー時の文字色をカスタム.scss の $secondary に変更
   }
 }
 

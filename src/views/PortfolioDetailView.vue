@@ -1,16 +1,17 @@
 <script>
 import HorizontalRule from '@/components/common/HorizontalRule.vue';
 import IconAndName from '@/components/common/IconAndName.vue';
+import LoadingSpinner from '@/components/common/LoadingSpinner.vue'; // インポート
 import TechList from '@/components/TechList.vue';
 import { getTechIcon } from '@/utils/iconLibrary';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { renderMarkdown } from '@/utils/util.js';
 
 export default {
   components: {
-    FontAwesomeIcon,
     HorizontalRule,
     IconAndName,
     TechList,
+    LoadingSpinner, // コンポーネントを登録
   },
   props: {
     category: {
@@ -29,6 +30,7 @@ export default {
       date: '',
       tech: [],
       description: '',
+      dataReady: false,
     };
   },
   mounted() {
@@ -55,17 +57,22 @@ export default {
               icon: getTechIcon(techItem),
             })),
           }));
+
+          this.dataReady = true;
         }
       })
       .catch((err) => {
         console.error('ポートフォリオデータの読み込みに失敗しました', err);
       });
   },
+  methods: {
+    renderMarkdown,
+  },
 };
 </script>
 
 <template>
-  <div class="portfolio-detail">
+  <div v-if="dataReady" class="portfolio-detail pt-2">
     <img
       :src="thumbnail"
       alt="サムネイル"
@@ -75,32 +82,32 @@ export default {
     <HorizontalRule />
     <div class="portfolio-tech">
       <ul>
-        <li v-for="(group, index) in tech" :key="index">
-          <strong class="tech-label">
+        <li v-for="(group, index) in tech" :key="index" class="mb-2">
+          <strong class="tech-label ps-3 mb-1">
             <IconAndName
               :icon="group.labelIcon"
               :name="group.label"
             ></IconAndName>
           </strong>
-          <TechList :items="group.items" />
+          <TechList :items="group.items" class="ps-3" />
           <HorizontalRule
             v-if="index < tech.length - 1"
-            opacity="0.3"
+            :opacity="0.3"
             borderstyle="dotted"
           />
         </li>
       </ul>
     </div>
     <HorizontalRule />
-    <p class="portfolio-description ps-2">{{ description }}</p>
+    <div
+      class="portfolio-description ps-2 pt-2"
+      v-html="renderMarkdown(description)"
+    ></div>
   </div>
+  <LoadingSpinner v-else />
 </template>
 
 <style scoped>
-.portfolio-detail {
-  padding: 2rem;
-}
-
 .portfolio-thumbnail {
   width: 100%;
   max-width: 500px; /* サムネイルの最大幅を少し小さく調整 */
@@ -110,7 +117,7 @@ export default {
 }
 
 .portfolio-title {
-  font-size: 2.5rem; /* タイトルを少し大きく */
+  font-size: 1.75rem; /* タイトルを少し大きく */
   font-weight: bold; /* タイトルを強調 */
   margin-bottom: 1rem;
 }

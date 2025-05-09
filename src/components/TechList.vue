@@ -1,7 +1,7 @@
 <template>
   <div class="tech-list">
     <div
-      class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5"
+      class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5"
     >
       <div
         class="tech-item my-1 col"
@@ -40,7 +40,7 @@ export default {
 
 <style scoped>
 .tech-list {
-  margin-top: 1rem;
+  margin-top: 4px;
 }
 
 .tech-item {

@@ -1,5 +1,5 @@
 <template>
-  <div class="home-view text-center pt-2 pb-5">
+  <div v-if="this.dataReady" class="home-view text-center pt-2 pb-5">
     <h1 class="title pb-3">Pick a work !</h1>
     <div class="portfolio-grid">
       <router-link
@@ -37,10 +37,12 @@
       </CustomButton>
     </div>
   </div>
+  <LoadingSpinner v-else />
 </template>
 
 <script>
 import CustomButton from '@/components/common/CustomButton.vue';
+import LoadingSpinner from '@/components/common/LoadingSpinner.vue';
 import { fetchJson } from '@/utils/fetchJson';
 import { getRandomRotation, renderMarkdown } from '@/utils/util.js';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -49,15 +51,18 @@ export default {
   components: {
     FontAwesomeIcon,
     CustomButton,
+    LoadingSpinner,
   },
   data() {
     return {
       portfolios: [], // 初期値を空配列に設定
       about: null, // About セクションのデータ
       contact: null, // Contact セクションのデータ
+      dataReady: false, // データが読み込まれたかどうかのフラグ
     };
   },
   mounted() {
+    let fetchSuccessNum = 0;
     // ポートフォリオデータを取得
     fetchJson('/data/portfolioData.json')
       .then((portfolioData) => {
@@ -75,6 +80,8 @@ export default {
               hovered: false,
             }))
         );
+        fetchSuccessNum++;
+        this.dataReady = fetchSuccessNum >= 2; // 両方のデータが読み込まれたら true にする
       })
       .catch((error) => console.error('Failed to load portfolio data:', error));
 
@@ -83,6 +90,9 @@ export default {
       .then((siteContent) => {
         this.about = siteContent.about;
         this.contact = siteContent.contact;
+
+        fetchSuccessNum++;
+        this.dataReady = fetchSuccessNum >= 2; // 両方のデータが読み込まれたら true にする
       })
       .catch((error) => console.error('Failed to load site content:', error));
   },
