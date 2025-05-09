@@ -13,6 +13,7 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src'), // ← ここで @ を src に対応
     },
   },
+  base: '/MurikoCreationVer2/',
   css: {
     preprocessorOptions: {
       scss: {
