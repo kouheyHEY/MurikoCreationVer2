@@ -1,0 +1,31 @@
+{
+  "links": [
+    {
+      "name": "GitHub",
+      "url": "https://github.com/kouheyHEY",
+      "icon": "fab fa-github"
+    },
+    {
+      "name": "X",
+      "url": "https://x.com/Murimuriko_",
+      "icon": "fab fa-x-twitter"
+    },
+    {
+      "name": "Bluesky",
+      "url": "https://bsky.app/profile/muriikoko.bsky.social",
+      "icon": "fab fa-bluesky"
+    },
+    {
+      "name": "Tumblr",
+      "url": "https://www.tumblr.com/murikocreation",
+      "icon": "fab fa-tumblr"
+    },
+    {
+      "name": "itch.io",
+      "url": "https://murikocreation.itch.io",
+      "icon": "fab fa-itch-io"
+    }
+  ],
+  "email": "murimurinko@gmail.com",
+  "copyright": "むりこクリエイション"
+}
