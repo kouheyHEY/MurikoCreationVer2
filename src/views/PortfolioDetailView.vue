@@ -34,7 +34,7 @@ export default {
     };
   },
   mounted() {
-    fetch('/data/portfolioData.json')
+    fetch('data/portfolioData.json')
       .then((res) => res.json())
       .then((data) => {
         const categoryData = data[this.category];
