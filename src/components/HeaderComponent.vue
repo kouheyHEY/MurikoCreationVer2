@@ -1,7 +1,10 @@
 <template>
   <nav class="navbar navbar-expand-lg">
     <div class="container">
-      <router-link class="navbar-brand title d-flex align-items-center" to="/">
+      <router-link
+        class="navbar-brand title d-flex align-items-center"
+        :to="`${baseUrl}`"
+      >
         <img
           src="/src/assets/images/logo_header_1_48x48.png"
           alt="Logo"

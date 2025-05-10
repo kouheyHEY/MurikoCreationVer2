@@ -5,7 +5,7 @@
       <router-link
         v-for="portfolio in portfolios"
         :key="portfolio.id"
-        :to="`portfolio/${portfolio.category}/${portfolio.id}`"
+        :to="`${baseUrl}portfolio/${portfolio.category}/${portfolio.id}`"
         class="portfolio-item rounded-1"
         :style="{
           transform: `rotate(${portfolio.rotation}deg) scale(${portfolio.hovered ? 0.9 : 1})`,
