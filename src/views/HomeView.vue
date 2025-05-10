@@ -1,5 +1,5 @@
 <template>
-  <div v-if="this.dataReady" class="home-view text-center pt-2 pb-5">
+  <div v-if="dataReady" class="home-view text-center pt-2 pb-5">
     <h1 class="title pb-3">Pick a work !</h1>
     <div class="portfolio-grid">
       <router-link
