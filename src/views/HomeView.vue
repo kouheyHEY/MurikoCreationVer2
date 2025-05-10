@@ -5,7 +5,7 @@
       <router-link
         v-for="portfolio in portfolios"
         :key="portfolio.id"
-        :to="`${import.meta.env.BASE_URL}portfolio/${portfolio.category}/${portfolio.id}`"
+        :to="`${baseUrl}portfolio/${portfolio.category}/${portfolio.id}`"
         class="portfolio-item rounded-1"
         :style="{
           transform: `rotate(${portfolio.rotation}deg) scale(${portfolio.hovered ? 0.9 : 1})`,
@@ -21,7 +21,7 @@
     <div class="about-section mt-5" v-if="about">
       <h1 class="title pb-3">{{ about.title }}</h1>
       <div v-html="renderMarkdown(about.abstract)"></div>
-      <CustomButton :to="`${import.meta.env.BASE_URL}about`">
+      <CustomButton :to="`${baseUrl}about`">
         <!-- <FontAwesomeIcon icon="user" class="me-2" /> -->
         <span class="pixel-font-button">Check status</span>
       </CustomButton>
@@ -31,7 +31,7 @@
     <div class="contact-section mt-5" v-if="contact">
       <h1 class="title pb-3">{{ contact.title }}</h1>
       <div v-html="renderMarkdown(contact.abstract)"></div>
-      <CustomButton :to="`${import.meta.env.BASE_URL}contact`">
+      <CustomButton :to="`${baseUrl}contact`">
         <!-- <FontAwesomeIcon icon="paper-plane" class="me-2" /> -->
         <span class="pixel-font-button">Send a message</span>
       </CustomButton>
@@ -55,6 +55,7 @@ export default {
   },
   data() {
     return {
+      baseUrl: import.meta.env.VITE_BASE_URL || '/',
       portfolios: [], // 初期値を空配列に設定
       about: null, // About セクションのデータ
       contact: null, // Contact セクションのデータ

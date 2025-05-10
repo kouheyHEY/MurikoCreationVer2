@@ -1,8 +1,9 @@
 <script>
 import HorizontalRule from '@/components/common/HorizontalRule.vue';
 import IconAndName from '@/components/common/IconAndName.vue';
-import LoadingSpinner from '@/components/common/LoadingSpinner.vue'; // インポート
+import LoadingSpinner from '@/components/common/LoadingSpinner.vue';
 import TechList from '@/components/TechList.vue';
+import { fetchJson } from '@/utils/fetchJson'; // fetchJson をインポート
 import { getTechIcon } from '@/utils/iconLibrary';
 import { renderMarkdown } from '@/utils/util.js';
 
@@ -11,7 +12,7 @@ export default {
     HorizontalRule,
     IconAndName,
     TechList,
-    LoadingSpinner, // コンポーネントを登録
+    LoadingSpinner,
   },
   props: {
     category: {
@@ -25,6 +26,7 @@ export default {
   },
   data() {
     return {
+      baseUrl: import.meta.env.VITE_BASE_URL || '/',
       thumbnail: '',
       title: '',
       date: '',
@@ -34,16 +36,15 @@ export default {
     };
   },
   mounted() {
-    fetch('data/portfolioData.json')
-      .then((res) => res.json())
+    fetchJson('data/portfolioData.json') // fetchJson を使用
       .then((data) => {
         const categoryData = data[this.category];
         const item = categoryData.find((item) => item.id === this.id);
 
         if (item) {
           this.thumbnail = item.thumbnail
-            ? `/data/${item.thumbnail}`
-            : '/data/images/thumbneil_default_1200x1200.png';
+            ? `${this.baseUrl}data/${item.thumbnail}`
+            : `${this.baseUrl}data/images/thumbneil_default_1200x1200.png`;
 
           this.title = item.title;
           this.date = item.date;

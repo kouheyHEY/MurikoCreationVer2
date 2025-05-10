@@ -1,6 +1,6 @@
 <template>
   <footer class="footer text-center py-4 mt-5">
-    <div class="container">
+    <div v-if="dataReady" class="container">
       <div class="mb-3">
         <a
           v-for="link in footerContent?.links"
@@ -42,11 +42,12 @@ export default {
     return {
       currentYear: new Date().getFullYear(),
       footerContent: null, // フッターのデータを格納
+      dataReady: false, // データが準備できたかどうかのフラグ
     };
   },
   mounted() {
     // フッターのデータを取得
-    fetchJson('/data/footerContent.json')
+    fetchJson('data/footerContent.json')
       .then((data) => {
         // 各リンクにアイコンを追加
         this.footerContent = {
@@ -56,6 +57,7 @@ export default {
             icon: getTechIcon(link.name),
           })),
         };
+        this.dataReady = true; // データが準備できたことを示す
       })
       .catch((error) => console.error('Failed to load footer content:', error));
   },

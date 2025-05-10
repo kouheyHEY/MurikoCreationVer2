@@ -6,6 +6,10 @@
 export default {
   name: 'HorizontalRule',
   props: {
+    width: {
+      type: String,
+      default: '100%', // 必要に応じてデフォルトを設定
+    },
     // 線の色
     color: {
       type: String,
@@ -42,7 +46,6 @@ export default {
         borderRight: 'none',
         width: this.width || '100%',
         opacity: this.opacity,
-        // ここでwidthを指定しない場合は100%になる
       };
     },
   },

@@ -18,7 +18,7 @@ export default {
   },
   props: {
     icon: {
-      type: Object,
+      type: [String, Object],
       required: true,
     },
     name: {

@@ -14,7 +14,7 @@ const routes = [
     component: PortfolioDetailView,
     props: (route) => ({
       category: route.params.category,
-      id: Number(route.params.id), // ← ここでNumberに変換！！
+      id: Number(route.params.id),
     }),
   },
   { path: '/blog', name: 'Blog', component: BlogView },

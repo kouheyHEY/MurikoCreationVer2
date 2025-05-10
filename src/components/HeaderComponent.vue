@@ -1,7 +1,10 @@
 <template>
   <nav class="navbar navbar-expand-lg">
     <div class="container">
-      <router-link class="navbar-brand title d-flex align-items-center" :to="import.meta.env.BASE_URL">
+      <router-link
+        class="navbar-brand title d-flex align-items-center"
+        :to="baseUrl"
+      >
         <img
           src="/src/assets/images/logo_header_1_48x48.png"
           alt="Logo"
@@ -12,6 +15,16 @@
     </div>
   </nav>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      baseUrl: import.meta.env.VITE_BASE_URL || '/',
+    };
+  },
+};
+</script>
 
 <style lang="scss" scoped>
 .navbar {
