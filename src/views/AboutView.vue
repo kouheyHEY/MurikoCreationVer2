@@ -82,7 +82,7 @@ export default {
     };
   },
   mounted() {
-    fetchJson('/data/aboutContent.json')
+    fetchJson('data/aboutContent.json')
       .then((data) => {
         this.aboutContent = {
           ...data,
