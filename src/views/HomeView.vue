@@ -75,8 +75,8 @@ export default {
               description: item.description,
               category,
               thumbnail: item.thumbnail
-                ? `data/${item.thumbnail}`
-                : 'data/images/thumbneil_default_1200x1200.png',
+                ? `${baseUrl}data/${item.thumbnail}`
+                : `${baseUrl}data/images/thumbneil_default_1200x1200.png`,
               rotation: getRandomRotation(), // util.js の関数を使用
               hovered: false,
             }))
