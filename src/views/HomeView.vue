@@ -64,7 +64,7 @@ export default {
   mounted() {
     let fetchSuccessNum = 0;
     // ポートフォリオデータを取得
-    fetchJson('/data/portfolioData.json')
+    fetchJson('data/portfolioData.json')
       .then((portfolioData) => {
         this.portfolios = Object.entries(portfolioData).flatMap(
           ([category, items]) =>
@@ -86,7 +86,7 @@ export default {
       .catch((error) => console.error('Failed to load portfolio data:', error));
 
     // サイトコンテンツデータを取得
-    fetchJson('/data/siteContent.json')
+    fetchJson('data/siteContent.json')
       .then((siteContent) => {
         this.about = siteContent.about;
         this.contact = siteContent.contact;
