@@ -21,7 +21,7 @@
     <div class="about-section mt-5" v-if="about">
       <h1 class="title pb-3">{{ about.title }}</h1>
       <div v-html="renderMarkdown(about.abstract)"></div>
-      <CustomButton to="/about">
+      <CustomButton :to="`${import.meta.env.BASE_URL}about`">
         <!-- <FontAwesomeIcon icon="user" class="me-2" /> -->
         <span class="pixel-font-button">Check status</span>
       </CustomButton>
@@ -31,7 +31,7 @@
     <div class="contact-section mt-5" v-if="contact">
       <h1 class="title pb-3">{{ contact.title }}</h1>
       <div v-html="renderMarkdown(contact.abstract)"></div>
-      <CustomButton to="/contact">
+      <CustomButton :to="`${import.meta.env.BASE_URL}contact`">
         <!-- <FontAwesomeIcon icon="paper-plane" class="me-2" /> -->
         <span class="pixel-font-button">Send a message</span>
       </CustomButton>
