@@ -5,7 +5,7 @@
  */
 export async function fetchJson(path) {
   try {
-    const response = await fetch(path);
+    const response = await fetch(import.meta.env.BASE_URL + path);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
