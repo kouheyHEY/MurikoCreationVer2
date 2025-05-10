@@ -5,7 +5,7 @@
       <router-link
         v-for="portfolio in portfolios"
         :key="portfolio.id"
-        :to="`${baseUrl}portfolio/${portfolio.category}/${portfolio.id}`"
+        :to="`portfolio/${portfolio.category}/${portfolio.id}`"
         class="portfolio-item rounded-1"
         :style="{
           transform: `rotate(${portfolio.rotation}deg) scale(${portfolio.hovered ? 0.9 : 1})`,
@@ -75,8 +75,8 @@ export default {
               description: item.description,
               category,
               thumbnail: item.thumbnail
-                ? `/data/${item.thumbnail}`
-                : '/data/images/thumbneil_default_1200x1200.png',
+                ? `data/${item.thumbnail}`
+                : 'data/images/thumbneil_default_1200x1200.png',
               rotation: getRandomRotation(), // util.js の関数を使用
               hovered: false,
             }))
