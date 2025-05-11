@@ -3,7 +3,7 @@
     <div class="container">
       <router-link
         class="navbar-brand title d-flex align-items-center"
-        :to="`${baseUrl}`"
+        :to="`/`"
       >
         <img
           src="/src/assets/images/logo_header_1_48x48.png"
