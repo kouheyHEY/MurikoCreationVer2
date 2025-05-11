@@ -5,7 +5,7 @@
       <router-link
         v-for="portfolio in portfolios"
         :key="portfolio.id"
-        :to="`${baseUrl}portfolio/${portfolio.category}/${portfolio.id}`"
+        :to="`/portfolio/${portfolio.category}/${portfolio.id}`"
         class="portfolio-item rounded-1"
         :style="{
           transform: `rotate(${portfolio.rotation}deg) scale(${portfolio.hovered ? 0.9 : 1})`,
@@ -21,7 +21,7 @@
     <div class="about-section mt-5" v-if="about">
       <h1 class="title pb-3">{{ about.title }}</h1>
       <div v-html="renderMarkdown(about.abstract)"></div>
-      <CustomButton :to="`${baseUrl}about`">
+      <CustomButton :to="`/about`">
         <!-- <FontAwesomeIcon icon="user" class="me-2" /> -->
         <span class="pixel-font-button">Check status</span>
       </CustomButton>
@@ -31,7 +31,7 @@
     <div class="contact-section mt-5" v-if="contact">
       <h1 class="title pb-3">{{ contact.title }}</h1>
       <div v-html="renderMarkdown(contact.abstract)"></div>
-      <CustomButton :to="`${baseUrl}contact`">
+      <CustomButton :to="`/contact`">
         <!-- <FontAwesomeIcon icon="paper-plane" class="me-2" /> -->
         <span class="pixel-font-button">Send a message</span>
       </CustomButton>
