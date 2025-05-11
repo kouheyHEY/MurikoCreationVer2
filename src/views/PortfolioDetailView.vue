@@ -43,8 +43,8 @@ export default {
 
         if (item) {
           this.thumbnail = item.thumbnail
-            ? `${baseUrl}data/${item.thumbnail}`
-            : `${baseUrl}data/images/thumbneil_default_1200x1200.png`;
+            ? `${this.baseUrl}data/${item.thumbnail}`
+            : `${this.baseUrl}data/images/thumbneil_default_1200x1200.png`;
 
           this.title = item.title;
           this.date = item.date;
