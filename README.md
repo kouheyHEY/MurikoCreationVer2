@@ -2,7 +2,7 @@
 
 # むりこクリエイション
 
-[ページはこちら](http://kouheyhey.github.io/MurikoCreationVer2/docs)
+[ページはこちら](http://kouheyhey.github.io/MurikoCreationVer2/)
 
 # Vue 3 + Vite
 
