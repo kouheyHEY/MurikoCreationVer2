@@ -5,8 +5,6 @@
  */
 export async function fetchJson(path) {
   try {
-    console.log('START fetchJson', path);
-    console.log('VITE_BASE_URL', import.meta.env.VITE_BASE_URL);
     const response = await fetch(import.meta.env.VITE_BASE_URL + path);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
