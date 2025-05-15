@@ -34,7 +34,7 @@ export default {
 .title {
   font-size: 1.5rem;
   font-family: $pixel-font-bold;
-  color: $light !important; // 通常時の文字色
+  color: $white !important; // 通常時の文字色
   transition: color 0.3s ease; // ホバー時の色変更にトランジションを追加
 
   &:hover {

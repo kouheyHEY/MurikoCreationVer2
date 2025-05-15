@@ -22,7 +22,7 @@ export default {
 <style scoped lang="scss">
 .btn-custom {
   background-color: $primary;
-  color: $light;
+  color: $white;
   border: none;
   font-size: 1.25rem;
   border-radius: 0.25rem;
@@ -35,7 +35,7 @@ export default {
 
   &:hover {
     background-color: $secondary;
-    color: $light;
+    color: $white;
     text-decoration: none !important;
     scale: 0.9;
   }

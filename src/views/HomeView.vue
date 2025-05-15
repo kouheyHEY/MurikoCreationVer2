@@ -158,6 +158,6 @@ export default {
 
 .pixel-font-button {
   font-family: $font-title;
-  color: $light;
+  color: $white;
 }
 </style>

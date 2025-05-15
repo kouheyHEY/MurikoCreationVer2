@@ -67,11 +67,11 @@ export default {
 <style scoped lang="scss">
 .footer {
   background-color: $dark; // custom.scss の $dark を使用
-  color: $light; // custom.scss の $light を使用
+  color: $white; // custom.scss の $light を使用
 }
 
 .footer-link {
-  color: $light; // custom.scss の $light を使用
+  color: $white; // custom.scss の $light を使用
   text-decoration: none;
   transition: color 0.3s ease; // ホバー時の色変更にトランジションを追加
 
