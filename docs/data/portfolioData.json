@@ -41,6 +41,48 @@
         }
       ],
       "description": "コインを投げてひたすら所持金を増やしていくゲームです。\n\nある程度まで進めると、自動でゲームを進行できる状態にすることも可能です。\n\n生成AIによるコードの自動生成機能が使用可能なエディタの「cursor」を使用して、かなり制作期間を短縮することができました。"
+    },
+    {
+      "id": 3,
+      "title": "よわいいきもの",
+      "date": "2025年3月28日",
+      "thumbnail": "images/thumbneil_yowaiIkimono.png",
+      "tech": [
+        {
+          "label": "プログラミング",
+          "items": ["JavaScript"]
+        },
+        {
+          "label": "フレームワーク",
+          "items": ["Phaser"]
+        },
+        {
+          "label": "その他ツール",
+          "items": ["Node.js"]
+        }
+      ],
+      "description": "「よわいいきもの」を強化してひたすら生存させるゲームです。\n\nGithub Copilot を使用して、コードの自動生成を行い、開発の効率化を図りました。"
+    },
+    {
+      "id": 4,
+      "title": "箱を壊すだけ",
+      "date": "2025年7月1日",
+      "thumbnail": "images/thumbneil_hako.png",
+      "tech": [
+        {
+          "label": "プログラミング",
+          "items": ["TypeScript", "Vite"]
+        },
+        {
+          "label": "フレームワーク",
+          "items": ["Phaser"]
+        },
+        {
+          "label": "その他ツール",
+          "items": ["Node.js"]
+        }
+      ],
+      "description": "画面上の「箱」を壊すだけのシンプルなクリッカーゲームです。\n\nPhaser3 の TypeScript で開発を行いました。Vite を使用してビルドを行い、ブラウザで動作するゲームとして公開しています。\n\nゲームの内容は非常にシンプルですが、Phaser の機能を学ぶための教材としては良いものになったと思います。"
     }
   ],
   "web": [
